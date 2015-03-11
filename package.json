@@ -1,0 +1,31 @@
+{
+  "name": "jobpanda",
+  "version": "0.0.0",
+  "description": "job application management app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deceitfulpanda/jobpanda.git"
+  },
+  "keywords": [
+    "job",
+    "application"
+  ],
+  "author": "Deceitful Panda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deceitfulpanda/jobpanda/issues"
+  },
+  "homepage": "https://github.com/deceitfulpanda/jobpanda",
+  "dependencies": {
+    "browserify": "^9.0.3",
+    "express": "^4.12.2",
+    "grunt": "^0.4.5",
+    "passport": "^0.2.1",
+    "reflux": "^0.2.6",
+    "sequelize": "^2.0.4"
+  }
+}
