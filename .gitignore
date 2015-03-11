@@ -1,2 +1,4 @@
-npm_modules
+npm_modules/
+
 bower_components
+/
