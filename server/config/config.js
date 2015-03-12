@@ -11,7 +11,7 @@ var db = Bookshelf.initialize({
 		password: process.env.DB_PW || 'password',
 		database: 'jobpanda',
 		charset: 'utf8',
-		filename: path.join(__dirname, 'POSTGRES FILE DIRECTORY')
+		filename: path.join(__dirname, '../../db/jobpanda.postgres')
 	}
 });
 
