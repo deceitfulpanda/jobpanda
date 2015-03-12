@@ -1,5 +1,2 @@
-var listingController = require('../controllers/listingController.js');
-
-module.exports = function (app) {
-
-};
+/*==================== REQUIRE DEPENDENCIES ====================*/
+var Listings = require('../models/listing.js');
