@@ -40,6 +40,7 @@
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-html-replace": "^1.4.4",
+    "gulp-less": "^3.0.1",
     "gulp-react": "^3.0.0",
     "gulp-server-livereload": "^1.2.1",
     "gulp-streamify": "0.0.5",

@@ -7,10 +7,11 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 var server = require('gulp-server-livereload');
+var less = require('gulp-less');
 
 var path = {
   HTML: './client/src/index.html',
-  CSS: './client/src/styles.css',
+  CSS: './client/src/css/',
   MINIFIED_OUT: 'bundle.min.js',
   OUT: 'bundle.js',
   DEST: './client/dist',
@@ -19,13 +20,20 @@ var path = {
   ENTRY_POINT: './client/src/js/App.jsx'
 };
 
+//convert less files (material-ui) to regular css
+gulp.task('less', function(){
+  return gulp.src('./client/src/css/main.less')
+    .pipe(less({path: '/'}))
+    .pipe(gulp.dest(path.DEST + '/css'))
+});
+
 //Copy HTML & CSS to build destination
 gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
 
   gulp.src(path.CSS)
-    .pipe(gulp.dest(path.DEST));
+    .pipe(gulp.dest(path.DEST + '/css'));
 });
 
 
@@ -88,6 +96,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['replaceHTML', 'build']);
+gulp.task('production', ['replaceHTML', 'build', 'less']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);
