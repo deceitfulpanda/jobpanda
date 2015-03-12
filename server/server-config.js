@@ -9,3 +9,5 @@ app.configure(function(){
 	app.use(bodyParser);
 	app.use(express.static(__dirname + '/client'));
 });
+
+module.exports = app;
