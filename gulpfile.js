@@ -16,7 +16,7 @@ var path = {
   DEST: './client/dist',
   DEST_BUILD: './client/dist/build',
   DEST_SRC: './client/dist/src',
-  ENTRY_POINT: './client/src/js/App.js'
+  ENTRY_POINT: './client/src/js/App.jsx'
 };
 
 //Copy HTML & CSS to build destination
@@ -65,17 +65,17 @@ gulp.task('build', function(){
 
 //serve files to localhost:8000 for testing
 gulp.task('webserver', function() {
-  gulp.src(path.DEST)
+  gulp.src('./')
     .pipe(server({
       livereload: true,
       directoryListing: false,
-      defualtFile: path.DEST + '/index.html',
+      defaultFile: path.DEST + '/index.html',
       open: true
     }));
 });
 
 gulp.task('watchProd', function(){
-  gulp.watch(['client/src/index.html', 'client/src/styles.css', 'client/src/js/**/*.js'], ['production'])
+  gulp.watch(['client/src/index.html', 'client/src/styles.css', 'client/src/js/*.jsx', 'client/src/js/components/*.jsx'], ['production'])
 });
 
 
@@ -83,11 +83,11 @@ gulp.task('watchProd', function(){
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
-      'js': 'build/' + path.MINIFIED_OUT
+      'js': './client/dist/build/' + path.MINIFIED_OUT
     }))
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['copy', 'replaceHTML', 'build']);
+gulp.task('production', ['replaceHTML', 'build']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);
