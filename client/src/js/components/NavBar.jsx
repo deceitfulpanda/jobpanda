@@ -28,21 +28,21 @@ var iconMenuItems = [
 var NavBar = React.createClass({
   render: function(){
     return (
-      <div>
-        <h1>Hello World</h1>
-         <Toolbar>
-           <ToolbarGroup key={0} float="left">
+        <Toolbar>
+          <ToolbarGroup key={0} float="left">
+             <a className="hidden-link" href="/"><h2 className="mui-app-bar-title">JobPanda</h2></a>
+          </ToolbarGroup>
+          <ToolbarGroup key={1} float="left">
              <DropDownMenu menuItems={filterOptions} />
-           </ToolbarGroup>
-           <ToolbarGroup key={1} float="right">
+          </ToolbarGroup>
+          <ToolbarGroup key={2} float="right">
              <FontIcon className="mui-icon-pie" />
              <FontIcon className="mui-icon-sort" />
              <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
              <span className="mui-toolbar-separator">&nbsp;</span>
-             <RaisedButton label="Create Broadcast" primary={true} />
-           </ToolbarGroup>
-         </Toolbar>
-      </div>
+             <RaisedButton label="Login" primary={true} />
+          </ToolbarGroup>
+        </Toolbar>
       );
   }
 });

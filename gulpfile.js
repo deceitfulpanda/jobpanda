@@ -11,7 +11,7 @@ var less = require('gulp-less');
 
 var path = {
   HTML: './client/src/index.html',
-  CSS: './client/src/css/',
+  CSS: './client/src/css/*.css',
   MINIFIED_OUT: 'bundle.min.js',
   OUT: 'bundle.js',
   DEST: './client/dist',
@@ -31,11 +31,12 @@ gulp.task('less', function(){
 gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
-
-  gulp.src(path.CSS)
-    .pipe(gulp.dest(path.DEST + '/css'));
 });
 
+gulp.task('copyCSS', function(){
+    gulp.src(path.CSS)
+      .pipe(gulp.dest(path.DEST + '/css'));
+})
 
 //watch files for changes
 gulp.task('watch', function() {
@@ -96,6 +97,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['replaceHTML', 'build', 'less']);
+gulp.task('production', ['copyCSS', 'replaceHTML', 'build', 'less']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);
