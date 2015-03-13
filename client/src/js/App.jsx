@@ -21,7 +21,7 @@ var Main = React.createClass({
     return (
         <div className="full">
           <NavBar />
-            <JobListBox />
+          <JobListBox />
         </div>
       );
   }

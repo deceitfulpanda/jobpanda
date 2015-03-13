@@ -1,7 +1,6 @@
 var React = require('react');
 var mui = require('material-ui');
 var JobRow = require('./JobRow.jsx');
-var Menu = mui.Menu;
 
 var JobList = React.createClass({
   render: function(){
