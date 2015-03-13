@@ -4,4 +4,4 @@ var port = process.env.PORT || 8000;
 
 app.listen(port);
 
-Console.log('listening on port: ' + port);
+console.log('listening on port: ' + port);
