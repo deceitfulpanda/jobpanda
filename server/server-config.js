@@ -8,15 +8,15 @@ var express     = require('express'),
 var app = express();
 
 /*===================== INITIALIZE ROUTERS =====================*/
-var userRouter = express.Router();
-var listingRouter = express.Router();
+// var userRouter = express.Router();
+// var listingRouter = express.Router();
 
 /*================== CONFIGURE EXPRESS MODULES =================*/
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '../client/dist'));
 
+app.use(express.static(__dirname + '/client/dist'));
 
 /*===================== SET EXPRESS ROUTES =====================*/
 // app.use('/api/users', userRouter);
