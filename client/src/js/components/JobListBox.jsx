@@ -9,6 +9,7 @@ var Tabs = mui.Tabs,
     TextField = mui.TextField,
     Paper = mui.Paper;
 
+
 var JobListBox = React.createClass({
   getInitialState: function() {
     return { jobs: JobStore.getJobs() };
@@ -52,7 +53,7 @@ var JobListBox = React.createClass({
               </div>
             </Tab>
         </Tabs>
-       </Paper>   
+       </Paper>    
     </div>
 
       );
