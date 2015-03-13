@@ -16,7 +16,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '/client/dist'));
+console.log(__dirname);
 
 /*===================== SET EXPRESS ROUTES =====================*/
 // app.use('/api/users', userRouter);
