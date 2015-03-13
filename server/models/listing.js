@@ -4,6 +4,7 @@ var User 			= require('./user'),
 var Field 		= require('./field'),
 var Position 	= require('./position'),
 var JobUser   = require('./job_user'),
+var Source    = require('./source'),
 var Locations = require('./location');
 
 //Set Table Relationships
@@ -20,6 +21,9 @@ var Listing = db.Model.extend({
 	},
 	locations: function(){
 		return this.belongsTo(Locations, 'location_id');
+	},
+	sources: function(){
+		return this.belongsTo(Source, 'source_id');
 	}
 });
 

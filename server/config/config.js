@@ -24,6 +24,7 @@ db.knex.schema.hasTable('listings').then(function(exists) {
       listing.increments('listing_id').primary();
       listing.integer('location_id');
       listing.integer('position_id');
+      listing.integer('source_id');
       listing.string('url', 255);
       listing.string('employment_type', 50);
       listing.string('experience', 50);
@@ -96,6 +97,18 @@ db.knex.schema.hasTable('fields').then(function(exists) {
     db.knex.schema.createTable('fields', function (field) {
       field.increments('field_id').primary();
       field.string('field_name', 255);
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+//Initialize sources table if it doesn't already exist
+db.knex.schema.hasTable('sources').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('sources', function (source) {
+      source.increments('source_id').primary();
+      source.string('source_name', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
