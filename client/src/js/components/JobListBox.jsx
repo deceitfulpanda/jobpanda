@@ -41,7 +41,8 @@ var JobListBox = React.createClass({
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">Candidacy Insights</h2> 
                 <p> 
-                  Charts and Data
+                  Charts and Data:
+                  <img src="http://www.jgeppert.com/struts2-jquery/struts2-jquery-charts-pie.png" />
                 </p> 
               </div> 
             </Tab> 

@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # ----------------------
@@ -138,7 +139,7 @@ fi
 #   cd - > /dev/null
 # fi
 
-# 6. Run gulp
+6. Run gulp
   if [ -e "$DEPLOYMENT_TARGET/gulpfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
   ./node_modules/.bin/gulp gulp production

@@ -1,21 +1,22 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var express     = require('express'),
-var bodyParser  = require('body-parser'),
-var passport    = require('passport'),
-var http        = require('http');
+    bodyParser  = require('body-parser'),
+    passport    = require('passport'),
+    http        = require('http');
 
 /*===================== INITIALIZE EXPRESS =====================*/
 var app = express();
 
 /*===================== INITIALIZE ROUTERS =====================*/
-var userRouter = express.Router();
-var listingRouter = express.Router();
+// var userRouter = express.Router();
+// var listingRouter = express.Router();
 
 /*================== CONFIGURE EXPRESS MODULES =================*/
-app.configure(fnction(){
-	app.use(bodyParser);
-	app.use(express.static(__dirname + '../client'));
-});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+console.log(__dirname);
 
 /*===================== SET EXPRESS ROUTES =====================*/
 // app.use('/api/users', userRouter);

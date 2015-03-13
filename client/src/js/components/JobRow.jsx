@@ -1,11 +1,15 @@
 var React = require('react');
-var mui = require('material-ui');
-var Menu = mui.Menu;
 
 var JobRow = React.createClass({
+  jobs : '',
   render: function(){
+     for (var key in this.props.jobs){
+          this.jobs += this.props.jobs[key];
+          };
     return (
-        <Menu menuItems={[this.props.job]} />
+        <div>
+          {this.props.jobs}
+       </div>
       );
   }
 }); 

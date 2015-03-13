@@ -8,7 +8,7 @@ var JobList = React.createClass({
     return (
       <span className="job-row">
         {this.props.jobs.map(function(job) {
-          return /*<JobRow key={job._id} data={job} />*/;
+          return <JobRow key={job._id} data={job} />;
         })}
       </span>
       );
