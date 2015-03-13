@@ -6,9 +6,10 @@
 }
 
 .mui-app-bar-title{
+  font-size: 24px;
   margin-bottom: 8px!important;
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left: 15px;
+  margin-right: 10px;
 }
 
 .hidden-link{
