@@ -91,12 +91,8 @@ gulp.task('watchProd', function(){
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
-<<<<<<< HEAD
-      'css': ['./client/dist/css/main.css', './client/dist/css/styles.css'],
-      'js': './client/dist/build/' + path.MINIFIED_OUT
-=======
+      'css': ['./css/main.css', './css/styles.css'],
       'js': './build/' + path.MINIFIED_OUT
->>>>>>> c76a502cc071ac2e1239edb602e1eec7b1a67806
     }))
     .pipe(gulp.dest(path.DEST));
 });
