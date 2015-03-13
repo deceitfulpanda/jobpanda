@@ -74,11 +74,11 @@ gulp.task('build', function(){
 
 //serve files to localhost:8000 for testing
 gulp.task('webserver', function() {
-  gulp.src('./')
+  gulp.src('./client/dist')
     .pipe(server({
       livereload: true,
       directoryListing: false,
-      defaultFile: path.DEST + '/index.html',
+      defaultFile: '/index.html',
       open: true
     }));
 });
@@ -92,7 +92,7 @@ gulp.task('watchProd', function(){
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
-      'js': './client/dist/build/' + path.MINIFIED_OUT
+      'js': './build/' + path.MINIFIED_OUT
     }))
     .pipe(gulp.dest(path.DEST));
 });
