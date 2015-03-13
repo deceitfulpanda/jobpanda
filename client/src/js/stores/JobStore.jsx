@@ -4,7 +4,7 @@ var JobActions = require('../actions/jobActions.jsx');
 var _jobs = [
   { payload: '1', text: 'Job Title', data: '1234567890', _id: '1'},
   { payload: '2', text: 'Company', data: 'Announcement', _id: '2'},
-  { payload: '3', text: 'Location', data: '(123) 456-7890', _id: '3'}
+  { payload: '3', text: 'Location', data: '(123) 456-7890', _id: '3'} 
 ];
 
 var JobStore = Reflux.createStore({

@@ -34,7 +34,7 @@ var JobListBox = React.createClass({
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">All Of My Added Jobs</h2>
                 <TextField hintText="Search Your Job Prospects" /> 
-                <JobList ref="jobList" jobs={this.state.jobs} onEdit={this.props.onEdit} />
+                <JobList jobs={this.state.jobs} onEdit={this.props.onEdit} />
               </div> 
             </Tab> 
             <Tab label="My Insights" > 
@@ -49,7 +49,7 @@ var JobListBox = React.createClass({
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">Make an Edit or Add A New Job</h2> 
                 <TextField hintText="Search Your Job Prospects" /> 
-                  <JobList ref="jobList" jobs={this.state.jobs} onEdit={this.props.onEdit} />
+                  <JobList jobs={this.state.jobs} onEdit={this.props.onEdit} />
               </div>
             </Tab>
         </Tabs>
