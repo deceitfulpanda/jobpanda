@@ -14,7 +14,7 @@ var listingRouter = express.Router();
 /*================== CONFIGURE EXPRESS MODULES =================*/
 app.configure(fnction(){
 	app.use(bodyParser);
-	app.use(express.static(__dirname + '/client'));
+	app.use(express.static(__dirname + '../client'));
 });
 
 /*===================== SET EXPRESS ROUTES =====================*/
