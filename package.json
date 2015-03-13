@@ -3,11 +3,9 @@
   "version": "0.0.0",
   "description": "job application management app",
   "main": "index.js",
-  "engines":{
-    "node": "0.10.30"
-  },
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "postinstall": "gulp production"
   },
   "repository": {
     "type": "git",
@@ -36,9 +34,7 @@
     "react-router": "^0.12.4",
     "react-tap-event-plugin": "^0.1.4",
     "reflux": "^0.2.6",
-    "sequelize": "^2.0.4"
-  },
-  "devDependencies": {
+    "sequelize": "^2.0.4",
     "browserify": "^9.0.3",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
@@ -52,5 +48,20 @@
     "reactify": "^1.1.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
-  }
+  }//,
+  // "devDependencies": {
+  //   "browserify": "^9.0.3",
+  //   "gulp": "^3.8.11",
+  //   "gulp-concat": "^2.5.2",
+  //   "gulp-html-replace": "^1.4.4",
+  //   "gulp-less": "^3.0.1",
+  //   "gulp-react": "^3.0.0",
+  //   "gulp-server-livereload": "^1.2.1",
+  //   "gulp-streamify": "0.0.5",
+  //   "gulp-uglify": "^1.1.0",
+  //   "gulp-util": "^3.0.4",
+  //   "reactify": "^1.1.0",
+  //   "vinyl-source-stream": "^1.1.0",
+  //   "watchify": "^2.4.0"
+  // }
 }
