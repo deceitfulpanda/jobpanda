@@ -87,16 +87,20 @@ gulp.task('watchProd', function(){
   gulp.watch(['client/src/index.html', 'client/src/styles.css', 'client/src/js/*.jsx', 'client/src/js/components/*.jsx'], ['production'])
 });
 
-
 //replace references to scripts in index.html
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
+<<<<<<< HEAD
+      'css': ['./client/dist/css/main.css', './client/dist/css/styles.css'],
+      'js': './client/dist/build/' + path.MINIFIED_OUT
+=======
       'js': './build/' + path.MINIFIED_OUT
+>>>>>>> c76a502cc071ac2e1239edb602e1eec7b1a67806
     }))
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['copyCSS', 'replaceHTML', 'build', 'less']);
+gulp.task('production', ['less', 'copyCSS', 'replaceHTML', 'build']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);

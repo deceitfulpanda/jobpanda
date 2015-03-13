@@ -10,7 +10,7 @@ var RaisedButton = mui.RaisedButton;
 var DropDownIcon = mui.DropDownIcon;
 
 var filterOptions = [
-  { payload: '1', text: 'All Broadcasts' },
+  { payload: '1', text: 'About' },
   { payload: '2', text: 'All Voice' },
   { payload: '3', text: 'All Text' },
   { payload: '4', text: 'Complete Voice' },
