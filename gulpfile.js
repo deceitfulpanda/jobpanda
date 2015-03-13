@@ -97,6 +97,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['copyCSS', 'replaceHTML', 'build', 'less']);
+gulp.task('production', ['less', 'copyCSS', 'replaceHTML', 'build']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);
