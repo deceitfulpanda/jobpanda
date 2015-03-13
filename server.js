@@ -4,11 +4,7 @@ var app = require('./server/server-config.js');
 
 var port = process.env.PORT || 8000;
 
-// app.use(express.static(__dirname + '/client/dist'));
-
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/client/dist/index.html');
-});
+app.use(express.static(__dirname + '/client/dist'));
 
 app.listen(port);
 
