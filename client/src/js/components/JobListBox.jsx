@@ -33,7 +33,6 @@ var JobListBox = React.createClass({
             <Tab label="My Jobs" > 
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">All Of My Added Jobs</h2>
-                <TextField hintText="Search Your Job Prospects" /> 
                 <JobList jobs={this.state.jobs} onEdit={this.props.onEdit} />
               </div> 
             </Tab> 
