@@ -24,12 +24,13 @@ db.knex.schema.hasTable('listings').then(function(exists) {
       listing.integer('location_id');
       listing.integer('position_id');
       listing.integer('source_id');
+      listing.integer('field_id');
       listing.string('url', 255);
+      listing.string('app_url', 255);
       listing.string('employment_type', 50);
       listing.string('experience', 50);
-      listing.string('salary/wage', 100);
+      listing.string('salary', 100);
       listing.string('response_type', 100);
-      listing.integer('field_id');
       listing.date('post_date');
     }).then(function (table) {
       console.log('Created Table', table);

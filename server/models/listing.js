@@ -5,6 +5,8 @@ var Field 		= require('./field'),
 var Position 	= require('./position'),
 var JobUser   = require('./job_user'),
 var Source    = require('./source'),
+var JobSkill  = require('./job_skill'),
+var Skill     = require('./skill'),
 var Locations = require('./location');
 
 //Set Table Relationships
@@ -24,6 +26,9 @@ var Listing = db.Model.extend({
 	},
 	sources: function(){
 		return this.belongsTo(Source, 'source_id');
+	}, 
+	skills: function(){
+		return this.belongsToMany(Skill).through(JobSkill);
 	}
 });
 
