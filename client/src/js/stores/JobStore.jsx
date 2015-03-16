@@ -2,9 +2,81 @@ var Reflux = require('reflux');
 var JobActions = require('../actions/jobActions.jsx');
 
 var _jobs = [
-  { text: 'LOL', _id: '1'},
-  { text: 'Company', _id: '2'},
-  { text: 'Location', _id: '3'}
+  {  
+   "Title":"Class Lead",
+   "Company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "Location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "Source Network":{  
+      "name":"LinkedIn",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "URL":"http://linkedin.com/hackreactor/software_engineer",
+   "Apply Link":"http://hackreactor.com/apply/software_engineer",
+   "Favorite":true
+},
+  {  
+   "Title":"Software Engineer",
+   "Company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+  {  
+     "title":"Software Engineer",
+     "company":{  
+        "name":"Hack Reactor",
+        "location":{  
+           "country":"US",
+           "state":"CA",
+           "city":"San Francisco"
+        }
+     },
+     "location":{  
+        "country":"US",
+        "state":"CA",
+        "city":"San Francisco"
+     },
+     "source_network":{  
+        "name":"AngelList",
+        "data":{  
+           "temp":"/*NETWORK SPECIFIC FIELDS*/"
+        }
+     },
+     "url":"http://angel.co/hackreactor/software_engineer",
+     "apply_link":"http://hackreactor.com/apply/software_engineer",
+     "favorite":true
+  }
 ];
 
 var JobStore = Reflux.createStore({

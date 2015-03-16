@@ -1,15 +1,19 @@
 var React = require('react');
 var mui = require('material-ui');
-var JobRow = require('./JobRow.jsx');
+// var JobRow = require('./JobRow.jsx');
+var Reactable = require('reactable');
+var Table = Reactable.Table;
 
 var JobList = React.createClass({
   render: function(){
     return (
-      <span className="job-row">
-        {this.props.jobs.map(function(job) {
-          return <JobRow key={job._id} data={job} />;
-        })}
-      </span>
+      <Table 
+      className="table" 
+      data={this.props.jobs}
+      sortable={true}
+      filterable={['Location', 'Company', 'Title', 'source_network', 'url', 'apply_link', 'favorite']}
+      itemsPerPage={15} 
+      />
       );
   }
 });
