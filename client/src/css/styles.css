@@ -25,3 +25,59 @@
 .tab-template-container {
   padding: 20px;
 }
+
+
+/*JOB TABLE STYLES*/
+.job-table {
+    width: 100%;
+}
+
+.reactable-column-header{
+  text-transform: uppercase;
+  font-family: roboto;
+  font-size: 20px;
+  opacity: .85;
+  padding-bottom: 15px;
+}
+
+.reactable-column-sortable::after{
+  border-bottom-width: 1em;
+  border-bottom-style: solid;
+  border-bottom-color: #666;
+  bottom: 0.25em;
+}
+
+.reactable-header-sort-desc{
+  opacity: 1;
+}
+
+.reactable-header-sort-asc{
+  opacity: 1;
+}
+
+.reactable-filter-input::before{
+  content: "Search for A Job";
+  color: Red;
+}
+.reactable-filter-input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 1px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-writing-mode: horizontal-tb;
+}
+
+.job-table{
+
+}

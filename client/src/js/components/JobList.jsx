@@ -1,18 +1,25 @@
 var React = require('react');
-var mui = require('material-ui');
-// var JobRow = require('./JobRow.jsx');
 var Reactable = require('reactable');
 var Table = Reactable.Table;
+var Tr = Reactable.Tr;
+var unsafe = Reactable.unsafe;
 
 var JobList = React.createClass({
   render: function(){
     return (
       <Table 
-      className="table" 
+      className="job-table" 
       data={this.props.jobs}
       sortable={true}
-      filterable={['Location', 'Company', 'Title', 'source_network', 'url', 'apply_link', 'favorite']}
+      filterable={['location', 'company', 'title', 'source_network', 'url', 'apply_link', 'favorite']}
       itemsPerPage={15} 
+      columns={[
+        {key:'title', label: 'Title'},
+        {key:'company', label: 'company'}, 
+        {key:'location', label: 'Location'},
+        {key: 'source network', label: 'Source Network'},
+        {key: 'apply link', label: 'Apply Link'}
+        ]}
       />
       );
   }
