@@ -1,15 +1,12 @@
 var React = require('react');
 
 var JobRow = React.createClass({
-  jobs : '',
   render: function(){
-     for (var key in this.props.jobs){
-          this.jobs += this.props.jobs[key];
-          };
+    console.log(this.props);
     return (
-        <div>
-          {this.props.jobs}
-       </div>
+      <div>
+          {this.props.data.text}
+      </div>
       );
   }
 }); 

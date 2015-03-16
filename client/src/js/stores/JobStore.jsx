@@ -9,8 +9,21 @@ var _jobs = [
 
 var JobStore = Reflux.createStore({
   init: function(){
+    this.load();
+    this.listenTo(JobActions.loadJobs, this.load)
     this.listenTo(JobActions.createJob, this.onCreate);
     this.listenTo(JobActions.editJob, this.onEdit);
+  },
+  load: function(){
+      $.ajax({
+        type: "GET",
+        url: '/api/listings',
+        headers: {'x-access-token': "TOKEN GOES HERE"}
+      }).done(function(data){
+          console.log(data);
+          this._jobs = data; //push data to store
+          this.trigger(_jobs);
+      });
   },
   onCreate: function(job) {
     _jobs.push(job);
@@ -28,6 +41,7 @@ var JobStore = Reflux.createStore({
   },
 
   getJobs: function() {
+    //req to /api/listings
     return _jobs;
   },
 
