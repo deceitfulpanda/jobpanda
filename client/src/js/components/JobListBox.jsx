@@ -60,6 +60,8 @@ var JobListBox = React.createClass({
 
 module.exports = JobListBox;
 
+var charData;
+
 var convertData = function(data){
   var i;
   var holder = {};
@@ -91,28 +93,6 @@ var prepareData = function(obj){
 
 var colorOptions = ["#FF1744", "#D500F9", "#3D5AFE", "#00B0FF", "#1DE9B6", "#76FF03", "#FFEA00", "#FF9100"]
 
-var chartData1= [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }
-]
-
-var charData;
 
 var jobResults = [
 {  
