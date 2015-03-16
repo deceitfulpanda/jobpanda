@@ -4,14 +4,13 @@ var path = require('path');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
-	client: 'postgres',
+	client: 'pg',
 	connection: {
-		host: process.env.DB_HOST || '127.0.0.1'/*Local Host for testing, ENV host for deployment*/,
-		user: process.env.DB_USER || 'test_user',
-		password: process.env.DB_PW || 'password',
-		database: 'jobpanda',
-		charset: 'utf8',
-    port: ''//,
+		host: process.env.DATABASE_URL || '127.0.0.1'/*Local Host for testing, ENV host for deployment*/,
+		user: process.env.PG_USER || 'test_user',
+		password: process.env.PG_PASS || 'password',
+		database: process.env.PG_DB || 'jobpanda',
+		charset: 'utf8'
 		//filename: path.join(__dirname, '../../db/jobpanda.postgres')
 	}
 });
@@ -132,10 +131,34 @@ db.knex.schema.hasTable('jobs_users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('jobs_users', function (application) {
       application.increments('id').primary();
-      application.integer('user_id', 255);
-      application.integer('job_id', 255);
+      application.integer('user_id');
+      application.integer('job_id');
       application.string('status', 100);
       application.timestamp();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('listings_skills').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('jobs_users', function (application) {
+      application.increments('id').primary();
+      application.integer('listing_id');
+      application.integer('skill_id');
+      application.timestamp();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('skills').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('skills', function (skill) {
+      skill.increments('skill_id').primary();
+      skill.string('skill', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
