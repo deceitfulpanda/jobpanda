@@ -132,10 +132,34 @@ db.knex.schema.hasTable('jobs_users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('jobs_users', function (application) {
       application.increments('id').primary();
-      application.integer('user_id', 255);
-      application.integer('job_id', 255);
+      application.integer('user_id');
+      application.integer('job_id');
       application.string('status', 100);
       application.timestamp();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('listings_skills').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('jobs_users', function (application) {
+      application.increments('id').primary();
+      application.integer('listing_id');
+      application.integer('skill_id');
+      application.timestamp();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('skills').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('skills', function (skill) {
+      skill.increments('skill_id').primary();
+      skill.string('skill', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
