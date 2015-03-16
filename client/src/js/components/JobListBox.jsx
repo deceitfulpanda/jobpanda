@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('material-ui');
 var JobList = require('./JobList.jsx');
 var JobStore = require('../stores/JobStore.jsx');
+var DoughnutChart = require('react-chartjs').Doughnut;
 
 //Set Material-UI Vars
 var Tabs = mui.Tabs,
@@ -39,10 +40,7 @@ var JobListBox = React.createClass({
             <Tab label="My Insights" > 
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">Candidacy Insights</h2> 
-                <p> 
-                  Charts and Data:
-                  <img src="http://www.jgeppert.com/struts2-jquery/struts2-jquery-charts-pie.png" />
-                </p> 
+                <DoughnutChart data={chartData} width="200" height ="200"/>
               </div> 
             </Tab> 
             <Tab label="Add or Edit Jobs" > 
@@ -61,3 +59,217 @@ var JobListBox = React.createClass({
 })
 
 module.exports = JobListBox;
+
+var convertData = function(data){
+  var i;
+  var holder = {};
+  for(i= 0; i<data.length; i++){
+    var temp = data[i];
+    console.log(temp);
+    if(!holder[temp.title]){
+      holder[temp.title] = 1;
+      console.log(holder);
+    } else {
+      holder[temp.title] +=1;
+    }
+  }
+  chartData = prepareData(holder);
+  console.log('data to be use', chartData);
+}
+
+var prepareData = function(obj){
+  var result = [];
+  for(var key in obj){
+    result.push({
+      'label': key,
+      'value': obj[key],
+      'color': colorOptions[Object.keys(obj).indexOf(key)]
+    });
+  }
+  return result;
+}
+
+var colorOptions = ["#FF1744", "#D500F9", "#3D5AFE", "#00B0FF", "#1DE9B6", "#76FF03", "#FFEA00", "#FF9100"]
+
+var chartData1= [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }
+]
+
+var charData;
+
+var jobResults = [
+{  
+   "title":"Software Engineer",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+
+{  
+   "title":"Software Engineer",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"Palo Alto"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+
+{  
+   "title":"DevOps Manager",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+
+{  
+   "title":"Software Engineer ",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+
+{  
+   "title":"Software Engineer",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+
+{  
+   "title":"Front-End Engineer",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+},
+];
+
+convertData(jobResults);
