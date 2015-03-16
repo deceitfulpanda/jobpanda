@@ -5,6 +5,7 @@ var Listing   = require('../models/listing.js'),
 		Locations = require('../models/location.js'),
 		User      = require('../models/user.js'),
 		Source    = require('../models/source.js'),
+		Company   = require('../models/company.js'),
     Promise   = require('bluebird'),
     JobUser   = require('../models/job_user.js'),
     Listings  = require('../collections/listings.js');
@@ -112,7 +113,7 @@ var findField = function(reqField){
 		if (field){
 			return field.get('field_id');
 		} else {
-			field = new Field({field: reqField}).save(function(newField){
+			new Field({field: reqField}).save(function(newField){
 			return newField.get('field_id');
 			});
 		}
@@ -124,20 +125,50 @@ var findPosition = function(reqPosition){
 		if (position){
 			return position.get('position_id');
 		} else {
-			position = new Position({position: req.body.position}).save(function(newPosition){
+			new Position({position: reqPosition}).save(function(newPosition){
 				return newPosition.get('position_id');
 			});
 		}
 	});
 };
 
-var findLocation = function(reqLocation){
+var findLocation = function(reqLocation, reqCompany, reqIndustry){
 	new Locations({location: reqLocation}).fetch().then(function(location){
 		if (location){
 			return location.get('location_id');
 		} else {
-			location = new Locations({location: req.body.location}).save(function(newLocation){
-				return newLocation.get('location_id');
+			new Locations({location: reqLocation}).save(function(newLocation){
+				Promise.promisify(findCompany(reqCompany, reqIndustry)).then(function(foundCompanyId){
+					newLocation.set('company_id', foundCompanyId);
+					return newLocation.get('location_id');
+				});
+			});
+		}
+	});
+};
+
+var findCompany = function(reqCompany, reqIndustry){
+	new Company({company: reqCompany}).fetch().then(function(company){
+		if (company){
+			return company.get('company_id');
+		} else {
+			new Company({company: reqCompany}).save(function(newCompany){
+				Promise.promisify(findIndustry(reqIndustry)).then(function(foundIndustryId){
+					newLocation.set('industry_id', foundIndustryId);
+					return newCompany.get('company_id');
+				});
+			});
+		}
+	});
+};
+
+var findIndustry = function(reqIndustry){
+	new Industry({industry: reqIndustry}).fetch().then(function(industry){
+		if (industry){
+			return industry.get('industry_id');
+		} else {
+			new Industry({industry: reqIndustry}).save(function(newIndustry){
+				return newIndustry.get('industry_id');
 			});
 		}
 	});
@@ -148,7 +179,7 @@ var findSource = function(reqSource){
 		if (source){
 			return source.get('source_id');
 		} else {
-			source = new Source({source: req.body.source}).save(function(newSource){
+			new Source({source: reqSource}).save(function(newSource){
 				return newSource.get('source_id');
 			});
 		}
