@@ -4,14 +4,13 @@ var path = require('path');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
-	client: 'postgres',
+	client: 'pg',
 	connection: {
-		host: process.env.DB_HOST || '127.0.0.1'/*Local Host for testing, ENV host for deployment*/,
-		user: process.env.DB_USER || 'test_user',
-		password: process.env.DB_PW || 'password',
-		database: 'jobpanda',
-		charset: 'utf8',
-    port: ''//,
+		host: process.env.DATABASE_URL || '127.0.0.1'/*Local Host for testing, ENV host for deployment*/,
+		user: process.env.PG_USER || 'test_user',
+		password: process.env.PG_PASS || 'password',
+		database: process.env.PG_DB || 'jobpanda',
+		charset: 'utf8'
 		//filename: path.join(__dirname, '../../db/jobpanda.postgres')
 	}
 });
