@@ -1,17 +1,17 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
+var mysql = require('mysql');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
-	client: 'pg',
+	client: 'mysql',
 	connection: {
-		host: process.env.DATABASE_URL || '127.0.0.1'/*Local Host for testing, ENV host for deployment*/,
-		user: process.env.PG_USER || 'test_user',
-		password: process.env.PG_PASS || 'password',
+		host: process.env.CLEARDB_DATABASE_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
+		user: process.env.CLEARDB_USER || 'test_user',
+		password: process.env.CLEARDB_PW || 'password',
 		database: process.env.PG_DB || 'jobpanda',
-		charset: 'utf8',
-		//filename: path.join(__dirname, '../../db/jobpanda.postgres')
+		charset: 'utf8'
 	}
 });
 
