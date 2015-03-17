@@ -10,7 +10,7 @@ var db = Bookshelf.initialize({
 		user: process.env.PG_USER || 'test_user',
 		password: process.env.PG_PASS || 'password',
 		database: process.env.PG_DB || 'jobpanda',
-		charset: 'utf8'
+		charset: 'utf8',
 		//filename: path.join(__dirname, '../../db/jobpanda.postgres')
 	}
 });

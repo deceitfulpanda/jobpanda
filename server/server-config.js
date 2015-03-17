@@ -1,7 +1,9 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var express     = require('express'),
+    session    = require('express-session');
     bodyParser  = require('body-parser'),
     passport    = require('passport'),
+    LinkedInStrategy = require('passport-linkedin').Strategy;
     http        = require('http');
 
 /*===================== INITIALIZE EXPRESS =====================*/
@@ -13,9 +15,43 @@ app.use(function(req, res, next) {
   next();
 });
 
+/*================= CONFIGURE PASSPORT/LINKEDIN ================*/
+app.use(session({ secret: "DECEITFUL PANDA IS THE WEB FOR YOUR JOB COB"}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.  However, since this example does not
+//   have a database of user records, the complete LinkedIn profile is
+//   serialized and deserialized.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+
+
+passport.use(new LinkedInStrategy({
+  consumerKey: process.env.LINKEDIN_API_KEY || 'DUMMY',
+  consumerSecret: process.env.LINKEDIN_SECRET_KEY || 'DUMMY',
+  callbackURL: process.env.AUTH_CALLBACK_URL || 'DUMMY'
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOrCreate({ linkedinId: profile.id}, function(err, user) {
+      return done(err, user);
+    });
+  }
+  ));
+
 /*===================== INITIALIZE ROUTERS =====================*/
-// var userRouter = express.Router();
-// var listingRouter = express.Router();
+var userRouter = express.Router();
+var listingRouter = express.Router();
 
 /*================== CONFIGURE EXPRESS MODULES =================*/
 
@@ -29,8 +65,8 @@ console.log(__dirname);
 // app.use('/api/listings', listingRouter);
 
 /*=================== SET ROUTER DEPENDENCIES ==================*/
-// require('../routes/userRoutes.js')(userRouter);
-// require('../routes/listingRoutes.js')(listingRouter);
+// require('./routes/userRoutes.js')(userRouter);
+// require('./routes/listingRoutes.js')(listingRouter);
 
 /*================== EXPORT EXPRESS TO MODULE ==================*/
 module.exports = app;

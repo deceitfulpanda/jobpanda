@@ -1,7 +1,7 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-var User      = require('./user'),
-var Listing 	= require('./listing');
+    User      = require('./user'),
+    Listing 	= require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var JobUser = db.Model.extend({

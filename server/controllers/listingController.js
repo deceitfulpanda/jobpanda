@@ -33,7 +33,7 @@ module.exports = {
 		}
 	},
 
-	saveListing: function(req, res next){
+	saveListing: function(req, res, next){
 		var token = req.headers['x-access-token'];
 		//set object for adding params to bookshelf model
 		var params = {};
