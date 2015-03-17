@@ -37,7 +37,6 @@ app.use(session({ secret: "DECEITFUL PANDA IS THE WEB FOR YOUR JOB COB"}));
 // });
 
 
-
 // passport.use(new LinkedInStrategy({
 //   consumerKey: process.env.LINKEDIN_API_KEY || 'DUMMY',
 //   consumerSecret: process.env.LINKEDIN_SECRET_KEY || 'DUMMY',
@@ -106,7 +105,7 @@ app.get('/api/users/logout', function(req, res, next){
     res.redirect('/');
   });
 });
-app.use('/api/listings', checkUser, listingRouter);
+app.use('/api/listings', listingRouter);
 
 var checkUser = function(req, res, next){
   var loggedIn = req.session ? !!req.session.user : false;
