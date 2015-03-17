@@ -4,7 +4,7 @@ var express          = require('express'),
     bodyParser       = require('body-parser'),
     passport         = require('passport'),
     // LinkedInStrategy = require('passport-linkedin').Strategy,
-    User             = require('models/user.js'),
+    User             = require('./models/user.js'),
     http             = require('http');
 
 /*===================== INITIALIZE EXPRESS =====================*/
