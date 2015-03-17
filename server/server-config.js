@@ -78,6 +78,7 @@ app.post('/api/users/signup', function(req, res, next){
       }
     });
 });
+
 app.post('/api/users/login', function(req, res, next){
   var username = req.body.username;
   var password = req.body.password;
@@ -97,8 +98,9 @@ app.post('/api/users/login', function(req, res, next){
         }
       });
     };
-  }
+  });
 });
+
 app.get('/api/users/logout', function(req, res, next){
   req.session.destroy(function(){
     res.redirect('/');
