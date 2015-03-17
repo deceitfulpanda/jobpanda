@@ -7,10 +7,10 @@ var path = require('path');
 var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
-		host: process.env.CLEARDB_DATABASE_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
+		host: process.env.CLEARDB_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
 		user: process.env.CLEARDB_USER || 'root',
 		password: process.env.CLEARDB_PW || '',
-		database: process.env.PG_DB || 'jobpanda',
+		database: process.env.CLEARDB_DB || 'jobpanda',
 		charset: 'utf8'
 	}
 });

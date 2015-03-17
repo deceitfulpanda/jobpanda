@@ -98,7 +98,7 @@ module.exports = {
 
 	checkUser: function(req, res, next){
 	  var loggedIn = req.session ? !!req.session.user : false;
-	  if (!logged){
+	  if (!loggedIn){
 	    res.redirect('/');
 	  } else {
 	    req.user = loggedIn;
