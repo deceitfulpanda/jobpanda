@@ -75,14 +75,15 @@ var JobStore = Reflux.createStore({
     this.listenTo(JobActions.editJob, this.onEdit);
   },
   load: function(){
+    var context = this;
       $.ajax({
         type: "GET",
         url: '/api/listings',
         headers: {'x-access-token': "TOKEN GOES HERE"}
       }).done(function(data){
           console.log(data);
-          this._jobs = data; //push data to store
-          this.trigger(_jobs);
+          _jobs = [data]; //push data to store
+          context.trigger(_jobs);
       });
   },
   onCreate: function(job) {

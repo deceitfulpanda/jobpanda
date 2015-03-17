@@ -67,16 +67,16 @@ var convertData = function(data){
   var holder = {};
   for(i= 0; i<data.length; i++){
     var temp = data[i];
-    console.log(temp);
+    // console.log(temp);
     if(!holder[temp.title]){
       holder[temp.title] = 1;
-      console.log(holder);
+      // console.log(holder);
     } else {
       holder[temp.title] +=1;
     }
   }
   chartData = prepareData(holder);
-  console.log('data to be use', chartData);
+  // console.log('data to be use', chartData);
 }
 
 var prepareData = function(obj){
