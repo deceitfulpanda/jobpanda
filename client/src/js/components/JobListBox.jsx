@@ -43,13 +43,6 @@ var JobListBox = React.createClass({
                 <DoughnutChart data={chartData} width="200" height ="200"/>
               </div> 
             </Tab> 
-            <Tab label="Add or Edit Jobs" > 
-              <div className="tab-template-container"> 
-                <h2 className="mui-font-style-headline">Make an Edit or Add A New Job</h2> 
-                <TextField hintText="Search Your Job Prospects" /> 
-                  <JobList jobs={this.state.jobs} onEdit={this.props.onEdit} />
-              </div>
-            </Tab>
         </Tabs>
        </Paper>    
     </div>
