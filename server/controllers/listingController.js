@@ -12,7 +12,7 @@ var Listing   = require('../models/listing.js'),
 
 /*==================== EXPORT CONTROLLER RESPONSE ====================*/
 module.exports = {
-	getListings: function(req, res, next){
+	getListing: function(req, res, next){
 		new User({username: req.body.user}).fetch().then(function(user){
 			if (user){
 				var id = user.user_id;
