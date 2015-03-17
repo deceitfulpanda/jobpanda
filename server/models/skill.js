@@ -1,7 +1,7 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-var JobSkill   = require('./job_skill'),
-var Listing 	= require('./listing');
+    JobSkill   = require('./job_skill'),
+    Listing 	= require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Skill = db.Model.extend({

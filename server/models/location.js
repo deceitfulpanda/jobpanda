@@ -1,7 +1,7 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-var Listing 	= require('./listing'),
-var Company 	= require('./company');
+    Listing 	= require('./listing'),
+    Company 	= require('./company');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Locations = db.Model.extend({

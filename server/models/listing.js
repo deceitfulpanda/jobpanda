@@ -1,13 +1,13 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-var User 			= require('./user'),
-var Field 		= require('./field'),
-var Position 	= require('./position'),
-var JobUser   = require('./job_user'),
-var Source    = require('./source'),
-var JobSkill  = require('./job_skill'),
-var Skill     = require('./skill'),
-var Locations = require('./location');
+		User 			= require('./user'),
+		Field 		= require('./field'),
+		Position 	= require('./position'),
+		JobUser   = require('./job_user'),
+		Source    = require('./source'),
+		JobSkill  = require('./job_skill'),
+		Skill     = require('./skill'),
+		Locations = require('./location');
 
 //Set Table Relationships
 var Listing = db.Model.extend({

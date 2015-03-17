@@ -1,10 +1,10 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-var User      = require('./skill'),
-var Listing 	= require('./listing');
+    User      = require('./skill'),
+    Listing 	= require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
-var JobUser = db.Model.extend({
+var JobSkill = db.Model.extend({
 	tablename: 'listings_skills',
 	hasTimestamps: true,
 	listings: function(){
