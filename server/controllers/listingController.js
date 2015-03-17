@@ -10,56 +10,25 @@ var Listing   = require('../models/listing.js'),
     JobUser   = require('../models/job_user.js'),
     Listings  = require('../collections/listings.js');
 
+/*==================== EXPORT CONTROLLER RESPONSE ====================*/
 module.exports = {
-	getListing: function(req, res, next){
-		res.send({  
-   "title":"Software Engineer",
-   "company":{  
-      "name":"Hack Reactor",
-      "location":{  
-         "country":"US",
-         "state":"CA",
-         "city":"San Francisco"
-      }
-   },
-   "location":{  
-      "country":"US",
-      "state":"CA",
-      "city":"San Francisco"
-   },
-   "source_network":{  
-      "name":"AngelList",
-      "data":{  
-         "temp":"/*NETWORK SPECIFIC FIELDS*/"
-      }
-   },
-   "url":"http://angel.co/hackreactor/software_engineer",
-   "apply_link":"http://hackreactor.com/apply/software_engineer",
-   "favorite":true
-});
-		var token = req.headers['x-access-token'];
-		//decrypt token to username
-    if (!token){
-      next(new Error('No token'));
-		} else {
-			new User({username: username}).fetch().then(function(user){
-				if (user){
-					var id = user.user_id;
-					Listings.query(function(qb){
-						qb.where('user_id', '=', id);
-					}).fetch({withRelated: ['users', 'fields', 'positions', 'locations', 'sources', 'skills'], require: true}).then(function(listings){
-						res.send(200, listings.models);
-					});
-				} else {
-					console.error('No user by that name!');
-					res.send(404);
-				}
-			});
-		}
+	getListings: function(req, res, next){
+		new User({username: req.body.user}).fetch().then(function(user){
+			if (user){
+				var id = user.user_id;
+				Listings.query(function(qb){
+					qb.where('user_id', '=', id);
+				}).fetch({withRelated: ['users', 'fields', 'positions', 'locations', 'sources', 'skills'], require: true}).then(function(listings){
+					res.send(200, listings.models);
+				});
+			} else {
+				console.error('No user by that name!');
+				res.send(404);
+			}
+		});
 	},
 
 	saveListing: function(req, res, next){
-		var token = req.headers['x-access-token'];
 		//set object for adding params to bookshelf model
 		var params = {};
 		//initialize non-relation params
@@ -69,65 +38,63 @@ module.exports = {
 		params.salary = req.body.salary;
 		params.response_type = req.body.response_type;
 		//decrypt token to username
-		if (!token){
-			next(new Error('No token'));
-		} else {
-			//find user db entry
-			new User({username: username}).fetch().then(function(user){
-				if (user){
-					//if user entry exists, look for listing entry
-					new Listing({url: req.body.url}).fetch().then(function(foundListing){
-						if (foundListing){
-							var userId = user.get('user_id');
-							var listingId = foundListing.get('listing_id');
-							//if listing entry exists, check joins table to see if user already has listing
-							new JobUser({user_id: userId, listing_id: listingId}).fetch().then(function(found){
-								if (found){
-									//if relationship exists, do nothing
-									res.send(201);
-								} else {
-									//if relationship doesn't exist in joins table, add relationship to joins
-									foundListing.users().attach(user).save().then(function(newListing){
-										res.send(200);
-									});
-								}
-							});
-						} else {
-							//use Promise to find field_id or create new field
-							Promise.promisify(findField(req.body.field))
-							.then(function(foundFieldId){
-								params.fieldId = foundFieldId;
-								//use Promise to find position_id or create new position
-								Promise.promisify(findPosition(req.body.position))
-								.then(function(foundPositionId){
-									params.positionId = foundPositionId;
-									//use Promise to find location_id or create new location
-									Promise.promisify(findLocation(req.body.location))
-									.then(function(foundLocationId){
-										params.locationId = foundLocationId;
-										//use Promise to find source_id or create new source
-										Promise.promisify(findSource(req.body.source))
-										.then(function(foundSourceId){
-											params.sourceId = foundSourceId;
-											//create new Listing with appropriate Id fields
-											var listing = new Listing(params);
-											//Set listing relationship to user then save to DB
-											listing.users().attach(user).save().then(function(newListing) {
-											  res.send(200);
-											});
+
+		//find user db entry
+		new User({username: req.body.user}).fetch().then(function(user){
+			if (user){
+				//if user entry exists, look for listing entry
+				new Listing({url: req.body.url}).fetch().then(function(foundListing){
+					if (foundListing){
+						var userId = user.get('user_id');
+						var listingId = foundListing.get('listing_id');
+						//if listing entry exists, check joins table to see if user already has listing
+						new JobUser({user_id: userId, listing_id: listingId}).fetch().then(function(found){
+							if (found){
+								//if relationship exists, do nothing
+								res.send(201);
+							} else {
+								//if relationship doesn't exist in joins table, add relationship to joins
+								foundListing.users().attach(user).save().then(function(newListing){
+									res.send(200);
+								});
+							}
+						});
+					} else {
+						//use Promise to find field_id or create new field
+						Promise.promisify(findField(req.body.field))
+						.then(function(foundFieldId){
+							params.fieldId = foundFieldId;
+							//use Promise to find position_id or create new position
+							Promise.promisify(findPosition(req.body.position))
+							.then(function(foundPositionId){
+								params.positionId = foundPositionId;
+								//use Promise to find location_id or create new location
+								Promise.promisify(findLocation(req.body.location))
+								.then(function(foundLocationId){
+									params.locationId = foundLocationId;
+									//use Promise to find source_id or create new source
+									Promise.promisify(findSource(req.body.source))
+									.then(function(foundSourceId){
+										params.sourceId = foundSourceId;
+										//create new Listing with appropriate Id fields
+										var listing = new Listing(params);
+										//Set listing relationship to user then save to DB
+										listing.users().attach(user).save().then(function(newListing) {
+										  res.send(200);
 										});
 									});
 								});
 							});
-						}
-					});
-				} else {
-					//if no user entry, return 404
-					console.error('No user by that name!');
-					res.send(404);
-				}
-			});
-		}
+						});
+					}
+				});
+			} else {
+				//if no user entry, return 404
+				console.error('No user by that name!');
+				res.send(404);
+			}
+		});
+
 	}
 };
 
