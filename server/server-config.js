@@ -107,16 +107,6 @@ app.get('/api/users/logout', function(req, res, next){
 });
 app.use('/api/listings', listingRouter);
 
-var checkUser = function(req, res, next){
-  var loggedIn = req.session ? !!req.session.user : false;
-  if (!logged){
-    res.redirect('/');
-  } else {
-    req.user = loggedIn;
-    next();
-  }
-}
-
 /*=================== SET ROUTER DEPENDENCIES ==================*/
 // require('./routes/userRoutes.js')(userRouter);
 require('./routes/listingRoutes.js')(listingRouter);

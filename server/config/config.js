@@ -1,7 +1,7 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
-var mysql = require('mysql');
+// var mysql = require('mysql');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
@@ -162,6 +162,8 @@ db.knex.schema.hasTable('skills').then(function(exists) {
     }).then(function (table) {
       console.log('Created Table', table);
     });
+  } else {
+    console.log('itexists');
   }
 });
 

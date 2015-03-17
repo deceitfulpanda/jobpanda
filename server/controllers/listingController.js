@@ -94,7 +94,16 @@ module.exports = {
 				res.send(404);
 			}
 		});
+	},
 
+	checkUser: function(req, res, next){
+	  var loggedIn = req.session ? !!req.session.user : false;
+	  if (!logged){
+	    res.redirect('/');
+	  } else {
+	    req.user = loggedIn;
+	    next();
+	  }
 	}
 };
 
