@@ -2,10 +2,13 @@ var Reflux = require('reflux');
 var JobActions = require('../actions/jobActions.jsx');
 var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
+var DropDownMenu = mui.DropDownMenu;
 var FlatButton = mui.FlatButton;
 var Toggle = mui.Toggle;
 var Reactable = require('reactable');
 var unsafe = Reactable.unsafe;
+var FloatingActionButton = mui.FloatingActionButton;
+
 
 var _jobs = [
   {
@@ -13,15 +16,18 @@ var _jobs = [
    "title":"Class Lead",
    "company": "Hack Reactor",
    "location": "San Francsico, CA",
-   "source network": "LinkedIn",
-   "apply link":<RaisedButton label='Apply' linkButton={true} primary={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
+   "source_network": "LinkedIn",
+   "apply_link":<RaisedButton label='Apply' linkButton={true} primary={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
    "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
-   "status": <div className="status">
-               <Toggle name="interview-toggle" label="Interview" />
-               <Toggle name="rejected-toggle"  label="Rejected" />
-               <Toggle name="offer-toggle"  label="Offer" />
-             </div>,
-  "date added": "3/15/15"
+   "status": <DropDownMenu menuItems={[
+   { payload: '1', text: 'No Response' },
+   { payload: '2', text: 'Interview' },
+   { payload: '3', text: 'Rejected' },
+   { payload: '4', text: 'Offer' },
+   { payload: '5', text: 'Pending' },
+]} />,
+   "date_added": "3/15/15",
+   "edit" : <FloatingActionButton iconClassName="pen" mini={true} secondary={true} />
 
 },
   {
@@ -29,42 +35,39 @@ var _jobs = [
    "title":"Dean of Admissions",
    "company": "Hack Reactor",
    "location": "San Francsico, CA",
-   "source network": "AngelList",
-   "apply link":<FlatButton label='Applied' linkButton={true} disabled={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
+   "date_added": "3/15/15",
+   "source_network": "AngelList",
+   "apply_link":<FlatButton label='Applied' linkButton={true} disabled={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
+   "status": <DropDownMenu menuItems={[
+   { payload: '1', text: 'No Response' },
+   { payload: '2', text: 'Interview' },
+   { payload: '3', text: 'Rejected' },
+   { payload: '4', text: 'Offer' },
+   { payload: '5', text: 'Pending' },
+]} />,
    "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
-   "status": <div className="status">
-               <Toggle name="interview-toggle" label="Interview" />
-               <Toggle name="rejected-toggle"  label="Rejected" />
-               <Toggle name="offer-toggle"  label="Offer" />
-             </div>,
-  "date added": "3/15/15"
+   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
+},
+  {
+   "id" : 012345,  
+   "title":"Class Lead",
+   "company": "Hack Reactor",
+   "location": "San Francsico, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<RaisedButton label='Apply' linkButton={true} primary={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
+   "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
+   "status": <DropDownMenu menuItems={[
+   { payload: '1', text: 'No Response' },
+   { payload: '2', text: 'Interview' },
+   { payload: '3', text: 'Rejected' },
+   { payload: '4', text: 'Offer' },
+   { payload: '5', text: 'Pending' },
+]} />,
+   "date_added": "3/15/15",
+   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
 
 },
-{  
-   "title":"Software Engineer",
-   "company":{  
-      "name":"Hack Reactor",
-      "location":{  
-         "country":"US",
-         "state":"CA",
-         "city":"San Francisco"
-      }
-   },
-   "location":{  
-      "country":"US",
-      "state":"CA",
-      "city":"San Francisco"
-   },
-   "source_network":{  
-      "name":"AngelList",
-      "data":{  
-         "temp":"/*NETWORK SPECIFIC FIELDS*/"
-      }
-   },
-   "url":"http://angel.co/hackreactor/software_engineer",
-   "apply_link":"http://hackreactor.com/apply/software_engineer",
-   "favorite":true
-}
+
 ];
 
 var JobStore = Reflux.createStore({

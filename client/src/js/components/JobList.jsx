@@ -11,14 +11,18 @@ var JobList = React.createClass({
       className="job-table" 
       data={this.props.jobs}
       sortable={true}
-      filterable={['location', 'company', 'title', 'source_network', 'url', 'apply_link', 'favorite']}
+      filterable={['location', 'company', 'title', 'source network', 'apply link', 'favorite', 'date added', 'status']}
       itemsPerPage={15} 
       columns={[
         {key:'title', label: 'Title'},
         {key:'company', label: 'company'}, 
         {key:'location', label: 'Location'},
-        {key: 'source network', label: 'Source Network'},
-        {key: 'apply link', label: 'Apply Link'}
+        {key: 'date_added', label: 'Date Added'},
+        {key: 'source_network', label: 'Source Network'},
+        {key: 'apply_link', label: 'Apply Link'},
+        {key: 'status', label: 'Status'},
+        {key: 'favorite', label: 'Favorite'},
+        {key: 'edit', label: 'Edit / Details'}
         ]}
       />
       );
