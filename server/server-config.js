@@ -61,12 +61,12 @@ app.use(bodyParser.json());
 console.log(__dirname);
 
 /*===================== SET EXPRESS ROUTES =====================*/
-// app.use('/api/users', userRouter);
-// app.use('/api/listings', listingRouter);
+app.use('/api/users', userRouter);
+app.use('/api/listings', listingRouter);
 
 /*=================== SET ROUTER DEPENDENCIES ==================*/
-// require('./routes/userRoutes.js')(userRouter);
-// require('./routes/listingRoutes.js')(listingRouter);
+require('./routes/userRoutes.js')(userRouter);
+require('./routes/listingRoutes.js')(listingRouter);
 
 /*================== EXPORT EXPRESS TO MODULE ==================*/
 module.exports = app;
