@@ -3,7 +3,7 @@ var User = require('../models/user.js');
 
 module.exports = {
 	signin: function(req, res, next){
-		new User({username: req.body.username).fetch()
+		new User({username: req.body.username}).fetch()
 		.then(function(foundUser){
 			if (!foundUser){
 				new User({username: req.body.username, password: req.body.password}).save().then(function(newUser){
