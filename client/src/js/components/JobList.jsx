@@ -17,11 +17,12 @@ var JobList = React.createClass({
         {key:'title', label: 'Title'},
         {key:'company', label: 'company'}, 
         {key:'location', label: 'Location'},
-        {key: 'date added', label: 'Date Added'},
-        {key: 'source network', label: 'Source Network'},
-        {key: 'apply link', label: 'Apply Link'},
+        {key: 'date_added', label: 'Date Added'},
+        {key: 'source_network', label: 'Source Network'},
+        {key: 'apply_link', label: 'Apply Link'},
         {key: 'status', label: 'Status'},
-        {key: 'favorite' label: 'Favorite'}
+        {key: 'favorite', label: 'Favorite'},
+        {key: 'edit', label: 'Edit / Details'}
         ]}
       />
       );
