@@ -39,7 +39,7 @@ var JobListBox = React.createClass({
             </Tab> 
             <Tab label="My Insights" > 
               <div className="tab-template-container"> 
-                <h2 className="mui-font-style-headline">Candidacy Insights</h2> 
+                <h2 className="mui-font-style-headline">Jobs Tracked by Title</h2> 
                 <DoughnutChart data={chartData} width="200" height ="200"/>
               </div> 
             </Tab> 
