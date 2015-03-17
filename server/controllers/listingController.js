@@ -12,6 +12,31 @@ var Listing   = require('../models/listing.js'),
 
 module.exports = {
 	getListing: function(req, res, next){
+		res.send({  
+   "title":"Software Engineer",
+   "company":{  
+      "name":"Hack Reactor",
+      "location":{  
+         "country":"US",
+         "state":"CA",
+         "city":"San Francisco"
+      }
+   },
+   "location":{  
+      "country":"US",
+      "state":"CA",
+      "city":"San Francisco"
+   },
+   "source_network":{  
+      "name":"AngelList",
+      "data":{  
+         "temp":"/*NETWORK SPECIFIC FIELDS*/"
+      }
+   },
+   "url":"http://angel.co/hackreactor/software_engineer",
+   "apply_link":"http://hackreactor.com/apply/software_engineer",
+   "favorite":true
+});
 		var token = req.headers['x-access-token'];
 		//decrypt token to username
     if (!token){
