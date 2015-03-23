@@ -63,6 +63,7 @@ console.log(__dirname);
 /*===================== SET EXPRESS ROUTES =====================*/
 // app.use('/api/users', userRouter);
 app.post('/api/users/signup', function(req, res, next){
+  //create new user session and database entry if username does not already exist
   new User({username: req.body.username}).fetch()
     .then(function(foundUser){
       if (!foundUser){
@@ -79,6 +80,7 @@ app.post('/api/users/signup', function(req, res, next){
 });
 
 app.post('/api/users/login', function(req, res, next){
+  //check username and password to log in
   var username = req.body.username;
   var password = req.body.password;
 
@@ -101,11 +103,32 @@ app.post('/api/users/login', function(req, res, next){
 });
 
 app.get('/api/users/logout', function(req, res, next){
+  //delete session on logout
   req.session.destroy(function(){
     res.redirect('/');
   });
 });
 app.use('/api/listings', listingRouter);
+
+app.get('/api/users/checkbookmarklet', function(req, res, next){
+  //check user session to let bookmarklet know if logged in or not
+  var response = {};
+  response.isAuthenticated = false;
+  var loggedIn = req.session ? !!req.session.user : false;
+  if (!loggedIn){
+    res.send(response);
+  } else {
+    new User({username: loggedIn.username}).fetch().then(function(user){
+      if (!user){
+        res.send(response);
+      } else {
+        response.isAuthenticated = true;
+        res.send(response);
+      }
+    });
+  }
+
+});
 
 /*=================== SET ROUTER DEPENDENCIES ==================*/
 // require('./routes/userRoutes.js')(userRouter);

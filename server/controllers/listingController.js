@@ -13,7 +13,7 @@ var Listing   = require('../models/listing.js'),
 /*==================== EXPORT CONTROLLER RESPONSE ====================*/
 module.exports = {
 	getListing: function(req, res, next){
-		new User({username: req.body.user}).fetch().then(function(user){
+		new User({username: req.user.username}).fetch().then(function(user){
 			if (user){
 				var id = user.user_id;
 				Listings.query(function(qb){
@@ -40,7 +40,7 @@ module.exports = {
 		//decrypt token to username
 
 		//find user db entry
-		new User({username: req.body.user}).fetch().then(function(user){
+		new User({username: req.user.username}).fetch().then(function(user){
 			if (user){
 				//if user entry exists, look for listing entry
 				new Listing({url: req.body.url}).fetch().then(function(foundListing){
