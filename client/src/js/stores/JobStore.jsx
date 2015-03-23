@@ -17,58 +17,198 @@ var _jobs = [
    "company": "Hack Reactor",
    "location": "San Francsico, CA",
    "source_network": "LinkedIn",
-   "apply_link":<RaisedButton label='Apply' linkButton={true} primary={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
-   "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
-   "status": <DropDownMenu menuItems={[
-   { payload: '1', text: 'No Response' },
-   { payload: '2', text: 'Interview' },
-   { payload: '3', text: 'Rejected' },
-   { payload: '4', text: 'Offer' },
-   { payload: '5', text: 'Pending' },
-]} />,
+   "apply_link":<a className="btn-flat disabled">Applied</a>,
+   "favorite": '',
+   "status":  <a className="btn-flat disabled">Interview</a>,
    "date_added": "3/15/15",
-   "edit" : <FloatingActionButton iconClassName="pen" mini={true} secondary={true} />
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
 
 },
   {
    "id" : 012346,  
-   "title":"Dean of Admissions",
-   "company": "Hack Reactor",
-   "location": "San Francsico, CA",
-   "date_added": "3/15/15",
-   "source_network": "AngelList",
-   "apply_link":<FlatButton label='Applied' linkButton={true} disabled={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
-   "status": <DropDownMenu menuItems={[
-   { payload: '1', text: 'No Response' },
-   { payload: '2', text: 'Interview' },
-   { payload: '3', text: 'Rejected' },
-   { payload: '4', text: 'Offer' },
-   { payload: '5', text: 'Pending' },
-]} />,
-   "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
-   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
-},
-  {
-   "id" : 012345,  
-   "title":"Class Lead",
+   "title":"Lecturer",
    "company": "Hack Reactor",
    "location": "San Francsico, CA",
    "source_network": "LinkedIn",
-   "apply_link":<RaisedButton label='Apply' linkButton={true} primary={true} target='_blank' href='http://hackreactor.com/apply/software_engineer' />,
-   "favorite": <Toggle name="favorite-toggle" value="true" label="Fav" />,
-   "status": <DropDownMenu menuItems={[
-   { payload: '1', text: 'No Response' },
-   { payload: '2', text: 'Interview' },
-   { payload: '3', text: 'Rejected' },
-   { payload: '4', text: 'Offer' },
-   { payload: '5', text: 'Pending' },
-]} />,
-   "date_added": "3/15/15",
-   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true}><i class="mdi-content-add"></i> </FloatingActionButton>
+   "apply_link":<a className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/18/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+  {
+   "id" : 012346,  
+   "title":"Lecturer",
+   "company": "Maker Square",
+   "location": "Austin, TX",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://makersquare.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/18/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
 
 },
 
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Google",
+   "location": "Mountain View, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Google",
+   "location": "Mountain View, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Bike Mechanic",
+   "company": "PostMates",
+   "location": "San Francisco, CA",
+   "source_network": "AngelList",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Yahoo",
+   "location": "Mountain View, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Software Engineer",
+   "company": "Yahoo",
+   "location": "Mountain View, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Microsoft",
+   "location": "Redmond, WA",
+   "source_network": "LinkedIn",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Janitor",
+   "company": "Google",
+   "location": "Mountain View, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a className="btn-flat disabled">Applied</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Supreme Boss",
+   "company": "Super Startup",
+   "location": "San Francisco, CA",
+   "source_network": "AngelList",
+   "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Apple",
+   "location": "Cupertino, CA",
+   "source_network": "LinkedIn",
+   "apply_link":<a className="btn-flat disabled">Applied</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">No Response</a>,
+   "date_added": "3/19/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Executive Assistant",
+   "company": "Google",
+   "location": "Mountain View, CA",
+   "source_network": "AngelList",
+   "apply_link":<a className="btn-flat disabled">Applied</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">Rejected</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+},
+
+  {
+   "id" : 012346,  
+   "title":"Designer",
+   "company": "Google",
+   "location": "Mountain View, CA",
+   "source_network": "Monster",
+   "apply_link":<a className="btn-flat disabled">Applied</a>,
+   "favorite": <i className="mdi-action-grade icon-medium" />,
+   "status":  <a className="btn-flat disabled">Offer</a>,
+   "date_added": "3/21/15",
+   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
+
+}
+
+
 ];
+
+// <select className="browser-default"> <option value="" disabled selected>Choose your option</option><option value="No Response">No Response</option> <option value="Interview">Interview</option> <option value="Rejected">Rejected</option> <option value="Offer">Offer</option> <option value="Pending">Pending</option> </select>
 
 var JobStore = Reflux.createStore({
   init: function(){
@@ -82,20 +222,27 @@ var JobStore = Reflux.createStore({
       $.ajax({
         type: "GET",
         url: '/api/listings',
-        headers: {'x-access-token': "TOKEN GOES HERE"}
       }).done(function(data){
           console.log(data);
           _jobs = [data]; //push data to store
           context.trigger(_jobs);
       });
   },
+  pushChanges: function() {
+      var context = this;
+      $.ajax({
+        type: "POST",
+        data: _jobs,
+        url: '/api/listings',
+      }).done(function(data){
+          console.log(data);
+          context.trigger(_jobs);
+      });
+  },
   onCreate: function(job) {
     _jobs.push(job);
     this.trigger(_jobs);
-  },
-  toggle: function(e, toggled, job){
-    console.log(e, toggled, job);
-
+    this.pushChanges();
   },
   onEdit: function(job) {
     for (var i = 0; i < _jobs.length; i++) {
@@ -105,6 +252,7 @@ var JobStore = Reflux.createStore({
         break;
       }
     }
+    this.pushChanges();
   },
 
   getJobs: function() {
