@@ -5,6 +5,7 @@ var express          = require('express'),
     passport         = require('passport'),
     // LinkedInStrategy = require('passport-linkedin').Strategy,
     User             = require('./models/user.js'),
+    Controller       = require('./controllers/listingController.js')
     http             = require('http');
 
 /*===================== INITIALIZE EXPRESS =====================*/
@@ -108,7 +109,9 @@ app.get('/api/users/logout', function(req, res, next){
     res.redirect('/');
   });
 });
-app.use('/api/listings', listingRouter);
+// app.use('/api/listings', listingRouter);
+app.get('/api/listings', Controller.getListing);
+app.post('/api/listings', Controller.saveListing);
 
 app.get('/api/users/checkbookmarklet', function(req, res, next){
   //check user session to let bookmarklet know if logged in or not
