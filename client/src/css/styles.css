@@ -86,3 +86,12 @@ th::hover {
   cursor: pointer;
   text-align: center;
 }
+
+.job-table td a.btn-flat, .job-table td a.btn {
+  margin-bottom: 0px!important;
+}
+
+.ReactModal__Content{
+  width: 50%;
+  height: 95%;
+}
