@@ -11,10 +11,10 @@ var db 				= require('../config/config'),
 
 //Set Table Relationships
 var Listing = db.Model.extend({
-	tablename: 'listings',
-	users: function(){
-		return this.belongsToMany(User).through(JobUser);
-	},
+	tableName: 'listings',
+	// users: function(){
+	// 	return this.belongsToMany(User).through(JobUser);
+	// },
 	fields: function(){
 		return this.belongsTo(Field, 'field_id');
 	},
@@ -26,10 +26,10 @@ var Listing = db.Model.extend({
 	},
 	sources: function(){
 		return this.belongsTo(Source, 'source_id');
-	}, 
-	skills: function(){
-		return this.belongsToMany(Skill).through(JobSkill);
-	}
+	}//, 
+	// skills: function(){
+	// 	return this.belongsToMany(Skill).through(JobSkill);
+	// }
 });
 
 module.exports = Listing;

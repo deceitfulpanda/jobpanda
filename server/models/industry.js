@@ -4,7 +4,7 @@ var db 				= require('../config/config'),
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Position = db.Model.extend({
-	tablename: 'industries',
+	tableName: 'industries',
 	companies: function(){
 		return this.hasMany(Company);
 	}

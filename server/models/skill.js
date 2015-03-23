@@ -5,7 +5,7 @@ var db 				= require('../config/config'),
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Skill = db.Model.extend({
-	tablename: 'users',
+	tableName: 'users',
 	listings: function(){
 		return this.belongsToMany(Listing).through(JobSkill);
 	}
