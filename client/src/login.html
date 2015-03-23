@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JobPanda</title>
+    <!-- build:css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <!-- endbuild  -->
+  </head>
+  <body style="
+    height: 100em;
+  ">
+
+
+<div class="row valign-wrapper">
+  <div class="col s4"></div>
+  <div class="col s4 card center-align">
+    <div class="valign">
+   <span class="card-title black-text">JobPanda</span>
+    </div>
+  <div id="username-dv" class="input-field">
+    <input id="username" type="text" class="validate" placeholder="Username">
+    <!-- <label for="username">Username</label> -->
+  </div>
+  <div id="username-dv" class="input-field">
+    <input id="password" type="text" class="validate" placeholder="Password">
+    <!-- <label for="password">Password</label> -->
+    <div class="col s4"></div>
+    <div class="">
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        Login 
+        <i class="mdi-communication-vpn-key"></i>
+      </button>
+    </div>
+    <div class="right-align"><a href="#" class="right-align" style="margin-right: 0; color: #9e9e9e ">Create an account..</a></div>
+  </div>
+  </div>
+</div>
+
+<!-- <div class="row">
+<div class="valign-wrapper">
+    <div id="app" class="input-field col s4 valign">
+      <input id="username" type="text" class="validate">
+      <label for="username">Username</label>
+    </div>
+    <div class="input-field col s4 valign">
+      <input id="password" type="text" class="validate">
+      <label for="password">Password</label>
+    </div>
+</div>
+<div class="valign-wrapper col s2">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="mdi-communication-vpn-key"></i>
+  </button>
+</div>
+</div> -->
+
+    <!-- build:js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="../../node_modules//browserify/bin"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
+    <script type="text/javascript" src="http://fb.me/JSXTransformer-0.12.0.js"></script>
+    <script type="text/jsx" src="js/Login.jsx"></script>
+    <!-- endbuild  -->
+    
+    <!-- Icons -->
+    <script>
+      var url ='icons.svg';
+      var c=new XMLHttpRequest(); c.open('GET', url, false); c.setRequestHeader('Content-Type', 'text/xml'); c.send();
+      document.body.insertBefore(c.responseXML.firstChild, document.body.firstChild)
+    </script>
+  </body>
+</html>
