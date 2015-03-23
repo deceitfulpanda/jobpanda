@@ -155,7 +155,7 @@ var findLocation = function(reqBody, params, user, res){
 		} else {
 			new Locations({city: reqBody.location}).save().then(function(newLocation){
 				params.location_id = newLocation.get('location_id');
-				findCompany(reqBody, newlocation);
+				findCompany(reqBody, newLocation);
 				findSource(reqBody, params, user, res);
 			});
 		}
