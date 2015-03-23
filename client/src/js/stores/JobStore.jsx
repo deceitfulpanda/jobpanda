@@ -64,7 +64,7 @@ var _jobs = [
    { payload: '5', text: 'Pending' },
 ]} />,
    "date_added": "3/15/15",
-   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
+   "edit" : <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true}><i class="mdi-content-add"></i> </FloatingActionButton>
 
 },
 
@@ -91,7 +91,6 @@ var JobStore = Reflux.createStore({
   },
   onCreate: function(job) {
     _jobs.push(job);
-
     this.trigger(_jobs);
   },
   toggle: function(e, toggled, job){
@@ -109,7 +108,7 @@ var JobStore = Reflux.createStore({
   },
 
   getJobs: function() {
-    //req to /api/listings
+    this.load(); //req to /api/listings
     return _jobs;
   },
 
