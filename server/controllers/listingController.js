@@ -14,8 +14,8 @@ var Listing   = require('../models/listing.js'),
 module.exports = {
 	getListing: function(req, res, next){
 		var results = [];
-		var userInfo = {username: 'test'};
-		var newUser = new User({user_id: 1});
+		var userInfo = {username: 'tester'};
+		var newUser = new User({user_name: 'tester'});
 		newUser.fetch().then(function(user){
 			if (user){
 				var id = user.get('user_id');
@@ -70,13 +70,10 @@ module.exports = {
 		//decrypt token to username
 
 		//find user db entry
-		var username = "hi";
+		var username = "tester";
 
 		var newUser = new User({user_name: username});
 		newUser.fetch().then(function(user){
-			user = newUser;
-			user.set('user_id', 1);
-			user.set('password', '3514');
 			if (user){
 				//if user entry exists, look for listing entry
 				new Listing({url: req.body.url}).fetch().then(function(foundListing){
@@ -128,7 +125,7 @@ var findField = function(reqBody, params, user, res){
 			params.field_id = field.get('field_id');
 			findPosition(reqBody, params, user, res);
 		} else {
-			new Field({field_name: reqField}).save().then(function(newField){
+			new Field({field_name: reqBody.field}).save().then(function(newField){
 				params.field_id = newField.get('field_id');
 				findPosition(reqBody, params, user, res);
 			});
