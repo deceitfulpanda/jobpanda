@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('material-ui');
 var JobList = require('./JobList.jsx');
 var JobStore = require('../stores/JobStore.jsx');
+var LeftNav = mui.LeftNav;
 var DoughnutChart = require('react-chartjs').Doughnut;
 
 //Set Material-UI Vars
@@ -27,8 +28,10 @@ var JobListBox = React.createClass({
     this.unsuscribe();
   },
   render: function() {
+      var menuItems = {yes: 'YES'};
     return (
       <div className="job-list-box">
+      <LeftNav docked={false} menuItems={menuItems} />
         <Paper z="1">
           <Tabs> 
             <Tab label="My Jobs" > 

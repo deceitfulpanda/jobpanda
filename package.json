@@ -42,6 +42,7 @@
     "gulp-util": "^3.0.4",
     "jwt-simple": "^0.2.0",
     "knex": "^0.7.5",
+    "material-design-icons": "^1.0.1",
     "material-ui": "^0.7.1",
     "mysql": "^2.5.5",
     "node-mysql": "^0.4.2",
