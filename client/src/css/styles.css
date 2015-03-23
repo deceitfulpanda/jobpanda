@@ -87,6 +87,7 @@ th::hover {
   text-align: center;
 }
 
+
 .job-table td a.btn-flat, .job-table td a.btn {
   margin-bottom: 0px!important;
 }
@@ -94,4 +95,19 @@ th::hover {
 .ReactModal__Content{
   width: 50%;
   height: 95%;
+}
+
+.half {
+  width: 40%;
+  display: inline-block;
+  align: center;
+  text-align: center;
+  margin-left: 5%;
+  font-weight: bold;
+}
+
+.lineGraph {
+  text-align: center;
+  margin-top: 25px;
+  font-weight: bold;
 }
