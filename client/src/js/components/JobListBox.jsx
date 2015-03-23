@@ -45,9 +45,13 @@ var JobListBox = React.createClass({
             <Tab label="My Insights" > 
               <div className="tab-template-container"> 
                 <h2 className="mui-font-style-headline">Jobs Tracked by Title</h2> 
+<<<<<<< HEAD
                 <DoughnutChart data={InsightStore.chartData} width="200" height ="200"/>
                 <RadarChart data={InsightStore.radarData} options={InsightStore.radarOptions} width="300" height="200"/>
                 <LineChart data= {InsightStore.lineData} width="500" height="200"/>
+=======
+                <DoughnutChart data={chartData} width="200" height ="200"/>
+>>>>>>> dd957940ebacb1e2afe3b77bb17399f94fe95921
               </div> 
             </Tab> 
         </Tabs>
