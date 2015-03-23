@@ -127,7 +127,6 @@ app.get('/api/users/checkbookmarklet', function(req, res, next){
       }
     });
   }
-
 });
 
 /*=================== SET ROUTER DEPENDENCIES ==================*/

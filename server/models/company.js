@@ -5,7 +5,7 @@ var db 				= require('../config/config'),
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Company = db.Model.extend({
-	tablename: 'companies',
+	tableName: 'companies',
 	locations: function(){
 		return this.hasMany(Locations);
 	},

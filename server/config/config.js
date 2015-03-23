@@ -9,12 +9,13 @@ var db = Bookshelf.initialize({
 	connection: {
 		host: process.env.CLEARDB_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
 		user: process.env.CLEARDB_USER || 'root',
-		password: process.env.CLEARDB_PW || '',
+		password: process.env.CLEARDB_PW || 'hello',
 		database: process.env.CLEARDB_DB || 'jobpanda',
 		charset: 'utf8'
 	}
 });
 
+db.plugin('registry');
 /*================ INITIALIZE TABLES WITH KNEX ================*/
 //Initialize listings table if it doesn't already exist
 db.knex.schema.hasTable('listings').then(function(exists) {
@@ -126,16 +127,16 @@ db.knex.schema.hasTable('users').then(function(exists) {
     });
   }
 });
-
+console.log('right before');
 //Initialize jobs_users table if it doesn't already exist
-db.knex.schema.hasTable('jobs_users').then(function(exists) {
+db.knex.schema.hasTable('listings_users').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('jobs_users', function (application) {
+    db.knex.schema.createTable('listings_users', function (application) {
       application.increments('id').primary();
       application.integer('user_id');
-      application.integer('job_id');
+      application.integer('listing_id');
       application.string('status', 100);
-      application.timestamp('timestamp');
+      application.timestamp('created');
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -144,7 +145,7 @@ db.knex.schema.hasTable('jobs_users').then(function(exists) {
 
 db.knex.schema.hasTable('listings_skills').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('jobs_users', function (application) {
+    db.knex.schema.createTable('listings_skills', function (application) {
       application.increments('id').primary();
       application.integer('listing_id');
       application.integer('skill_id');
@@ -162,8 +163,6 @@ db.knex.schema.hasTable('skills').then(function(exists) {
     }).then(function (table) {
       console.log('Created Table', table);
     });
-  } else {
-    console.log('itexists');
   }
 });
 

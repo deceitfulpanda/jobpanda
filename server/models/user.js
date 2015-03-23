@@ -7,7 +7,7 @@ var db 				= require('../config/config'),
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var User = db.Model.extend({
-	tablename: 'users',
+	tableName: 'users',
 	initialize: function(){
     this.on('creating', this.hashPassword);
   },

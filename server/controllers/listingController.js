@@ -13,12 +13,17 @@ var Listing   = require('../models/listing.js'),
 /*==================== EXPORT CONTROLLER RESPONSE ====================*/
 module.exports = {
 	getListing: function(req, res, next){
-		new User({username: req.user.username}).fetch().then(function(user){
+		var userInfo = {username: 'test'}
+		var newUser = new User({user_name: userInfo.username})
+		newUser.fetch().then(function(user){
+			console.log(user);
+			user = newUser;
+			user.set('user_id', 1);
+			console.log(user);
 			if (user){
-				var id = user.user_id;
-				Listings.query(function(qb){
-					qb.where('user_id', '=', id);
-				}).fetch({withRelated: ['users', 'fields', 'positions', 'locations', 'sources', 'skills'], require: true}).then(function(listings){
+				var id = user.get('user_id');
+				new JobUser({user_id: id}).fetchAll({withRelated: ['listings'], require: true}).then(function(listings){
+					console.log(listings);
 					res.send(200, listings.models);
 				});
 			} else {
@@ -32,15 +37,21 @@ module.exports = {
 		//set object for adding params to bookshelf model
 		var params = {};
 		//initialize non-relation params
-		params.url = req.body.url;
-		params.employment_type = req.body.employment_type;
+		params.url = req.body.jobUrl;
+		params.employment_type = req.body.employmentType;
 		params.experience = req.body.experience;
 		params.salary = req.body.salary;
-		params.response_type = req.body.response_type;
+		params.response_type = req.body.responseType;
 		//decrypt token to username
 
 		//find user db entry
-		new User({username: req.user.username}).fetch().then(function(user){
+		var username = "hi";
+
+		var newUser = new User({user_name: username});
+		newUser.fetch().then(function(user){
+			user = newUser;
+			user.set('user_id', 1);
+			user.set('password', '3514');
 			if (user){
 				//if user entry exists, look for listing entry
 				new Listing({url: req.body.url}).fetch().then(function(foundListing){
@@ -54,38 +65,15 @@ module.exports = {
 								res.send(201);
 							} else {
 								//if relationship doesn't exist in joins table, add relationship to joins
-								foundListing.users().attach(user).save().then(function(newListing){
+								console.log(foundListing);
+								foundListing.save().then(function(newListing){
+									var jobUser = new JobUser({listing_id: listing.get('listing_id'), user_id: user.get('user_id')}).save();
 									res.send(200);
 								});
 							}
 						});
 					} else {
-						//use Promise to find field_id or create new field
-						Promise.promisify(findField(req.body.field))
-						.then(function(foundFieldId){
-							params.fieldId = foundFieldId;
-							//use Promise to find position_id or create new position
-							Promise.promisify(findPosition(req.body.position))
-							.then(function(foundPositionId){
-								params.positionId = foundPositionId;
-								//use Promise to find location_id or create new location
-								Promise.promisify(findLocation(req.body.location))
-								.then(function(foundLocationId){
-									params.locationId = foundLocationId;
-									//use Promise to find source_id or create new source
-									Promise.promisify(findSource(req.body.source))
-									.then(function(foundSourceId){
-										params.sourceId = foundSourceId;
-										//create new Listing with appropriate Id fields
-										var listing = new Listing(params);
-										//Set listing relationship to user then save to DB
-										listing.users().attach(user).save().then(function(newListing) {
-										  res.send(200);
-										});
-									});
-								});
-							});
-						});
+						findField(req.body, params, user, res);
 					}
 				});
 			} else {
@@ -109,80 +97,101 @@ module.exports = {
 
 /*========== HELPER FUNCTIONS FOR FINDING/CREATING FOREIGN KEY ENTRIES ===========*/
 
-var findField = function(reqField){
-	new Field({field: reqField}).fetch().then(function(field){
+var findField = function(reqBody, params, user, res){
+	new Field({field_name: reqBody.field}).fetch().then(function(field){
 		if (field){
-			return field.get('field_id');
+			params.field_id = field.get('field_id');
+			findPosition(reqBody, params, user, res);
 		} else {
-			new Field({field: reqField}).save(function(newField){
-			return newField.get('field_id');
+			new Field({field_name: reqField}).save().then(function(newField){
+				params.field_id = newField.get('field_id');
+				findPosition(reqBody, params, user, res);
 			});
 		}
 	});
 };
 
-var findPosition = function(reqPosition){
-	new Position({position: reqPosition}).fetch().then(function(position){
+var findPosition = function(reqBody, params, user, res){
+	new Position({position_name: reqBody.jobTitle}).fetch().then(function(position){
 		if (position){
-			return position.get('position_id');
+			params.position_id = position.get('position_id');
+			findLocation(reqBody, params, user, res);
 		} else {
-			new Position({position: reqPosition}).save(function(newPosition){
-				return newPosition.get('position_id');
+			new Position({position_name: reqBody.jobTitle}).save().then(function(newPosition){
+				params.position_id = newPosition.get('position_id');
+				findLocation(reqBody, params, user, res);
 			});
 		}
 	});
 };
 
-var findLocation = function(reqLocation, reqCompany, reqIndustry){
-	new Locations({location: reqLocation}).fetch().then(function(location){
+var findLocation = function(reqBody, params, user, res){
+	new Locations({city: reqBody.location}).fetch().then(function(location){
 		if (location){
-			return location.get('location_id');
+			params.location_id = location.get('location_id');
+			findSource(reqBody, params, user, res);
 		} else {
-			new Locations({location: reqLocation}).save(function(newLocation){
-				Promise.promisify(findCompany(reqCompany, reqIndustry)).then(function(foundCompanyId){
-					newLocation.set('company_id', foundCompanyId);
-					return newLocation.get('location_id');
-				});
+			new Locations({city: reqBody.location}).save().then(function(newLocation){
+				params.location_id = newLocation.get('location_id');
+				findCompany(reqBody, newlocation);
+				findSource(reqBody, params, user, res);
 			});
 		}
 	});
 };
 
-var findCompany = function(reqCompany, reqIndustry){
-	new Company({company: reqCompany}).fetch().then(function(company){
+var findCompany = function(reqBody, loc, user){
+	new Company({company: reqBody.company}).fetch().then(function(company){
 		if (company){
-			return company.get('company_id');
+			loc.set('company_id') = company.get('company_id');
+			loc.save();
 		} else {
-			new Company({company: reqCompany}).save(function(newCompany){
-				Promise.promisify(findIndustry(reqIndustry)).then(function(foundIndustryId){
-					newLocation.set('industry_id', foundIndustryId);
-					return newCompany.get('company_id');
-				});
+			new Company({company: reqBody.company}).save().then(function(newCompany){
+				loc.set('company_id') = newCompany.get('company_id');
+				loc.save().then(function(){
+					findIndustry(reqBody, company);				
+				})
 			});
 		}
 	});
 };
 
-var findIndustry = function(reqIndustry){
-	new Industry({industry: reqIndustry}).fetch().then(function(industry){
+var findIndustry = function(reqBody, company, user){
+	new Industry({industry: reqBody.industry}).fetch().then(function(industry){
 		if (industry){
-			return industry.get('industry_id');
+			company.set('industry_id') = industry.get('industry_id');
+			company.save();
 		} else {
-			new Industry({industry: reqIndustry}).save(function(newIndustry){
-				return newIndustry.get('industry_id');
+			new Industry({industry: reqBody.industry}).save().then(function(newIndustry){
+				company.set('industry_id') = newIndustry.get('industry_id');
+				company.save();
 			});
 		}
 	});
 };
 
-var findSource = function(reqSource){
-	new Source({source: reqSource}).fetch().then(function(source){
+var findSource = function(reqBody, params, user, res){
+	new Source({source_name: reqBody.site}).fetch().then(function(source){
 		if (source){
-			return source.get('source_id');
+			params.source_id = source.get('source_id');
+			newListing(params, user, res);
 		} else {
-			new Source({source: reqSource}).save(function(newSource){
-				return newSource.get('source_id');
+			new Source({source_name: reqBody.site}).save().then(function(newSource){
+				params.source_id = newSource.get('source_id');
+				newListing(params, user, res);
 			});
 		}
+	});
+};
+//After saving foreign key tables, create and save listing table
+var newListing = function(params, user, res){
+	var listing = new Listing(params);
+	// console.log(user);
+	// console.log(params);
+	//Set listing relationship to user then save to DB
+	listing.save().then(function(newListing) {
+		var jobUser = new JobUser({listing_id: listing.get('listing_id'), user_id: user.get('user_id')}).save();
+		console.log('success');
+	  res.send(200);
 	});
 };
