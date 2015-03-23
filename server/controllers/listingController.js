@@ -13,18 +13,43 @@ var Listing   = require('../models/listing.js'),
 /*==================== EXPORT CONTROLLER RESPONSE ====================*/
 module.exports = {
 	getListing: function(req, res, next){
-		var userInfo = {username: 'test'}
-		var newUser = new User({user_name: userInfo.username})
+		var results = [];
+		var userInfo = {username: 'test'};
+		var newUser = new User({user_id: 1});
 		newUser.fetch().then(function(user){
-			console.log(user);
-			user = newUser;
-			user.set('user_id', 1);
-			console.log(user);
 			if (user){
 				var id = user.get('user_id');
-				new JobUser({user_id: id}).fetchAll({withRelated: ['listings'], require: true}).then(function(listings){
-					console.log(listings);
-					res.send(200, listings.models);
+				new JobUser({user_id: id}).fetchAll().then(function(listings){
+					for (var i = 0; i < listings.length; i++){
+						var entry = {};
+						var temp = i;
+						new Listing({listing_id: listings.models[i].get('listing_id')}).fetch().then(function(listing){
+							entry.url = listing.get('url');
+							entry.employment_type = listing.get('employment_type');
+							entry.experience = listing.get('experience');
+							entry.salary = listing.get('salary');
+							entry.response_type = listing.get('response_type');
+
+							new Field({field_id: listing.get('field_id')}).fetch().then(function(field){
+								entry.field = field.get('field_name');
+								new Position({position_id: listing.get('position_id')}).fetch().then(function(field){
+									entry.position = field.get('position_name');
+									new Locations({location_id: listing.get('location_id')}).fetch().then(function(locations){
+										entry.location = locations.get('city');
+										new Source({source_id: listing.get('source_id')}).fetch().then(function(source){
+											entry.source = source.get('source_name');
+											results.push(entry);
+											console.log(entry);
+											console.log(results);
+											if (temp === listings.length - 1){
+												res.send(results);
+											}
+										});
+									});
+								});
+							});
+						});
+					}
 				});
 			} else {
 				console.error('No user by that name!');

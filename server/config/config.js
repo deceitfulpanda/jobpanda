@@ -122,6 +122,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('user_id').primary();
       user.string('user_name', 255);
+      user.string('password', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
