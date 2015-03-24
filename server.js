@@ -11,7 +11,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/app', function(req, res){
-	res.sendFile(__dirname + '/client/dist/landing.html');
+	res.sendFile(__dirname + '/client/dist/index.html');
 });
 
 app.listen(port);
