@@ -61,13 +61,7 @@ module.exports = {
 	saveListing: function(req, res, next){
 		//set object for adding params to bookshelf model
 		var params = {};
-		//initialize non-relation params
-		params.url = req.body.jobURL;
-		params.employment_type = req.body.company.employmentType;
-		params.experience = req.body.company.experience;
-		params.salary = req.body.company.salary;
-		params.response_type = req.body.responseType;
-		console.log(req.body);
+
 		//decrypt token to username
 
 		//find user db entry
@@ -197,17 +191,25 @@ var findSource = function(reqBody, params, user, res){
 	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
 		if (source){
 			params.source_id = source.get('source_id');
-			newListing(params, user, res);
+			newListing(reqBody, params, user, res);
 		} else {
 			new Source({source_name: reqBody.sourceNetwork}).save().then(function(newSource){
 				params.source_id = newSource.get('source_id');
-				newListing(params, user, res);
+				newListing(reqBody, params, user, res);
 			});
 		}
 	});
 };
 //After saving foreign key tables, create and save listing table
-var newListing = function(params, user, res){
+var newListing = function(reqBody, params, user, res){
+	//initialize non-relation params
+	params.url = reqBody.jobURL;
+	params.employment_type = reqBody.company.employmentType;
+	params.experience = reqBody.company.experience;
+	params.salary = reqBody.company.salary;
+	params.response_type = reqBody.responseType;
+	console.log(params);
+
 	var listing = new Listing(params);
 	console.log(params);
 	// console.log(user);
