@@ -67,6 +67,7 @@ module.exports = {
 		params.experience = req.body.experience;
 		params.salary = req.body.salary;
 		params.response_type = req.body.responseType;
+		console.log(req.body);
 		//decrypt token to username
 
 		//find user db entry
@@ -163,12 +164,12 @@ var findLocation = function(reqBody, params, user, res){
 };
 
 var findCompany = function(reqBody, loc, user){
-	new Company({company: reqBody.company}).fetch().then(function(company){
+	new Company({company_name: reqBody.company.name}).fetch().then(function(company){
 		if (company){
 			loc.set('company_id') = company.get('company_id');
 			loc.save();
 		} else {
-			new Company({company: reqBody.company}).save().then(function(newCompany){
+			new Company({company_name: reqBody.company.name}).save().then(function(newCompany){
 				loc.set('company_id') = newCompany.get('company_id');
 				loc.save().then(function(){
 					findIndustry(reqBody, company);				
@@ -179,12 +180,12 @@ var findCompany = function(reqBody, loc, user){
 };
 
 var findIndustry = function(reqBody, company, user){
-	new Industry({industry: reqBody.industry}).fetch().then(function(industry){
+	new Industry({industry: reqBody.company.industry}).fetch().then(function(industry){
 		if (industry){
 			company.set('industry_id') = industry.get('industry_id');
 			company.save();
 		} else {
-			new Industry({industry: reqBody.industry}).save().then(function(newIndustry){
+			new Industry({industry: reqBody.company.industry}).save().then(function(newIndustry){
 				company.set('industry_id') = newIndustry.get('industry_id');
 				company.save();
 			});
@@ -193,12 +194,12 @@ var findIndustry = function(reqBody, company, user){
 };
 
 var findSource = function(reqBody, params, user, res){
-	new Source({source_name: reqBody.site}).fetch().then(function(source){
+	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
 		if (source){
 			params.source_id = source.get('source_id');
 			newListing(params, user, res);
 		} else {
-			new Source({source_name: reqBody.site}).save().then(function(newSource){
+			new Source({source_name: reqBody.sourceNetwork}).save().then(function(newSource){
 				params.source_id = newSource.get('source_id');
 				newListing(params, user, res);
 			});
@@ -208,6 +209,7 @@ var findSource = function(reqBody, params, user, res){
 //After saving foreign key tables, create and save listing table
 var newListing = function(params, user, res){
 	var listing = new Listing(params);
+	console.log(params);
 	// console.log(user);
 	// console.log(params);
 	//Set listing relationship to user then save to DB
