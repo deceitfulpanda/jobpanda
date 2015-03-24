@@ -15,4 +15,5 @@ var JobSkill = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = JobSkill;

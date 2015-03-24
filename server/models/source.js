@@ -10,4 +10,5 @@ var Source = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Source;

@@ -10,4 +10,5 @@ var Field = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Field;

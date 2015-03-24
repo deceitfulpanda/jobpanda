@@ -8,6 +8,7 @@ var db 				= require('../config/config'),
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var User = db.Model.extend({
 	tableName: 'users',
+  //if the section below looks very familiar... that's because it is
 	initialize: function(){
     this.on('creating', this.hashPassword);
   },
@@ -31,4 +32,5 @@ var User = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = User;

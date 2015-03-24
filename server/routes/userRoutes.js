@@ -1,3 +1,5 @@
+/*==================== NOT CURRENTLY IN USE ====================*/
+
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var userController = require('../controllers/userController.js');
 

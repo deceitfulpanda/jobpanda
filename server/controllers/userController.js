@@ -1,3 +1,8 @@
+/*==================== NOT CURRENTLY IN USE ====================*/
+
+//Because authentication is planned to be session-based, it is simpler to write
+//request-handlers directly in server-config.js where session dependency is already required
+
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var User = require('../models/user.js');
 
