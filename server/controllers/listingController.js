@@ -130,6 +130,7 @@ var findField = function(reqBody, params, user, res){
 
 var findPosition = function(reqBody, params, user, res){
 	new Position({position_name: reqBody.jobTitle}).fetch().then(function(position){
+		console.log(position);
 		if (position){
 			params.position_id = position.get('position_id');
 			findLocation(reqBody, params, user, res);
@@ -144,6 +145,7 @@ var findPosition = function(reqBody, params, user, res){
 
 var findLocation = function(reqBody, params, user, res){
 	new Locations({city: reqBody.location}).fetch().then(function(location){
+		console.log(location);
 		if (location){
 			params.location_id = location.get('location_id');
 			findSource(reqBody, params, user, res);
@@ -189,6 +191,7 @@ var findIndustry = function(reqBody, company, user){
 
 var findSource = function(reqBody, params, user, res){
 	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
+		console.log(source);
 		if (source){
 			params.source_id = source.get('source_id');
 			console.log('test', params);
