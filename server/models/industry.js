@@ -10,4 +10,5 @@ var Position = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Position;

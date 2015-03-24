@@ -1,3 +1,4 @@
+/*========== NOT CURRENTLY IN USE ==========*/
 var db = require('../config/config.js');
 var Listing = require('../models/listing');
 

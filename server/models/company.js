@@ -14,4 +14,5 @@ var Company = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Company;

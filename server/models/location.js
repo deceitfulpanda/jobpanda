@@ -14,4 +14,5 @@ var Locations = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Locations;

@@ -1,3 +1,5 @@
+/*========== NOT CURRENTLY IN USE ==========*/
+//Current plan for authorization was session based, so this file would be deleted
 var jwt = require('jwt-simple');
 
 module.exports = {

@@ -32,4 +32,5 @@ var Listing = db.Model.extend({
 	// }
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Listing;

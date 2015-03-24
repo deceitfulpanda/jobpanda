@@ -11,6 +11,7 @@ var express          = require('express'),
 /*===================== INITIALIZE EXPRESS =====================*/
 var app = express();
 
+//Allow CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -51,8 +52,9 @@ app.use(session({ secret: "DECEITFUL PANDA IS THE WEB FOR YOUR JOB COB"}));
 //   ));
 
 /*===================== INITIALIZE ROUTERS =====================*/
+// Not currently in use for CORS and session compatibility
 // var userRouter = express.Router();
-var listingRouter = express.Router();
+// var listingRouter = express.Router();
 
 /*================== CONFIGURE EXPRESS MODULES =================*/
 
@@ -63,6 +65,7 @@ console.log(__dirname);
 
 /*===================== SET EXPRESS ROUTES =====================*/
 // app.use('/api/users', userRouter);
+
 app.post('/api/users/signup', function(req, res, next){
   //create new user session and database entry if username does not already exist
   new User({username: req.body.username}).fetch()
@@ -84,7 +87,6 @@ app.post('/api/users/login', function(req, res, next){
   //check username and password to log in
   var username = req.body.username;
   var password = req.body.password;
-
   new User({username: username}).fetch().then(function(user){
     if( !user ){
       res.redirect('/');
@@ -109,9 +111,8 @@ app.get('/api/users/logout', function(req, res, next){
     res.redirect('/');
   });
 });
+
 // app.use('/api/listings', listingRouter);
-app.get('/api/listings', Controller.getListing);
-app.post('/api/listings', Controller.saveListing);
 
 app.get('/api/users/checkbookmarklet', function(req, res, next){
   //check user session to let bookmarklet know if logged in or not
@@ -132,9 +133,14 @@ app.get('/api/users/checkbookmarklet', function(req, res, next){
   }
 });
 
+//listing routes
+app.get('/api/listings', Controller.getListing);
+app.post('/api/listings', Controller.saveListing);
+
 /*=================== SET ROUTER DEPENDENCIES ==================*/
+// Not currently in use for CORS and session compatibility
 // require('./routes/userRoutes.js')(userRouter);
-require('./routes/listingRoutes.js')(listingRouter);
+// require('./routes/listingRoutes.js')(listingRouter);
 
 /*================== EXPORT EXPRESS TO MODULE ==================*/
 module.exports = app;

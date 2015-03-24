@@ -11,4 +11,5 @@ var Skill = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = Skill;

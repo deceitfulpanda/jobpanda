@@ -15,4 +15,5 @@ var JobUser = db.Model.extend({
 	}
 });
 
+/*=================== EXPORT MODULE ===================*/
 module.exports = JobUser;

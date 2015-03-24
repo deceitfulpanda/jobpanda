@@ -1,3 +1,7 @@
+/*==================== NOT CURRENTLY IN USE ====================*/
+
+//For whatever reason, CORS did not work with a separate routing script, so routing was moved back to server-config.js
+
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var listingController = require('../controllers/listingController.js');
 

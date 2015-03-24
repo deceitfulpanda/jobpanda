@@ -1,3 +1,10 @@
+// IMPORTANT
+// Bookshelf is pretty inflexible about column names and relationships.
+// We didn't have time to test, but because we used 'tablename_id' instead of
+// just 'id' for the primary key of each table, bookshelf-defined relationships
+// did not work. There may be value in renaming all primary keys simply to 'id'
+// and letting bookshelf do most of the relationship work. 
+
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
@@ -15,7 +22,11 @@ var db = Bookshelf.initialize({
 	}
 });
 
+//Bookshelf has poor out-of-box support for many-to-many relationships
+//registry plug-in is needed for bookshelf defined many-to-many's
+//besides plugin dependency, registry plugin code is not yet implemented in model files
 db.plugin('registry');
+
 /*================ INITIALIZE TABLES WITH KNEX ================*/
 //Initialize listings table if it doesn't already exist
 db.knex.schema.hasTable('listings').then(function(exists) {
@@ -128,8 +139,8 @@ db.knex.schema.hasTable('users').then(function(exists) {
     });
   }
 });
-console.log('right before');
-//Initialize jobs_users table if it doesn't already exist
+
+//Initialize listings_users table if it doesn't already exist
 db.knex.schema.hasTable('listings_users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('listings_users', function (application) {
@@ -144,6 +155,7 @@ db.knex.schema.hasTable('listings_users').then(function(exists) {
   }
 });
 
+//Initialize listings_skills table if it doesn't already exist
 db.knex.schema.hasTable('listings_skills').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('listings_skills', function (application) {
@@ -156,6 +168,7 @@ db.knex.schema.hasTable('listings_skills').then(function(exists) {
   }
 });
 
+//Initialize skills table if it doesn't already exist
 db.knex.schema.hasTable('skills').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('skills', function (skill) {
