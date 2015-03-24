@@ -132,3 +132,11 @@ body {
     margin-top: 120px;
   }
 }
+
+a.brand-logo {
+  padding-left: 10px;
+}
+
+img.featurette-image {
+  margin-top: 125px;
+}
