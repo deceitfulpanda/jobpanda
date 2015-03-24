@@ -191,9 +191,11 @@ var findSource = function(reqBody, params, user, res){
 	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
 		if (source){
 			params.source_id = source.get('source_id');
+			console.log('test', params);
 			newListing(reqBody, params, user, res);
 		} else {
 			new Source({source_name: reqBody.sourceNetwork}).save().then(function(newSource){
+				console.log('test', params);
 				params.source_id = newSource.get('source_id');
 				newListing(reqBody, params, user, res);
 			});
@@ -211,7 +213,6 @@ var newListing = function(reqBody, params, user, res){
 	console.log(params);
 
 	var listing = new Listing(params);
-	console.log(params);
 	// console.log(user);
 	// console.log(params);
 	//Set listing relationship to user then save to DB
