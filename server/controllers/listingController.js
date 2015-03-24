@@ -62,7 +62,7 @@ module.exports = {
 		//set object for adding params to bookshelf model
 		var params = {};
 		//initialize non-relation params
-		params.url = req.body.jobUrl;
+		params.url = req.body.jobURL;
 		params.employment_type = req.body.company.employmentType;
 		params.experience = req.body.company.experience;
 		params.salary = req.body.company.salary;
