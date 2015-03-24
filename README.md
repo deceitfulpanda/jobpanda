@@ -1,6 +1,6 @@
-# Project Name
+# JobPanda
 
-> Pithy project description
+> Make Your Job Search and Application process simple!
 
 ## Team
 
@@ -20,15 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+> Signup, add the bookmarklet and start adding jobs!
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- mySQL
+- Express
+- Passport
+- Bookshelf
 
 ## Development
 
@@ -40,11 +40,13 @@ From within the root directory:
 sudo npm install -g bower
 npm install
 bower install
+
+gulp localtest
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://docs.google.com/document/d/17RNAq88-6wvSno4OexgHLYg_NcPczV-i6D0TgtFtbzw/edit?usp=sharing)
 
 
 ## Contributing
