@@ -116,7 +116,7 @@ module.exports = {
 
 var findField = function(reqBody, params, user, res){
 	new Field({field_name: reqBody.field}).fetch().then(function(field){
-		if (field){
+		if (field !== null){
 			params.field_id = field.get('field_id');
 			findPosition(reqBody, params, user, res);
 		} else {
@@ -131,7 +131,7 @@ var findField = function(reqBody, params, user, res){
 var findPosition = function(reqBody, params, user, res){
 	new Position({position_name: reqBody.jobTitle}).fetch().then(function(position){
 		console.log(position);
-		if (position){
+		if (position !== null){
 			params.position_id = position.get('position_id');
 			findLocation(reqBody, params, user, res);
 		} else {
@@ -146,7 +146,7 @@ var findPosition = function(reqBody, params, user, res){
 var findLocation = function(reqBody, params, user, res){
 	new Locations({city: reqBody.location}).fetch().then(function(location){
 		console.log(location);
-		if (location){
+		if (location !== null){
 			params.location_id = location.get('location_id');
 			findSource(reqBody, params, user, res);
 		} else {
@@ -161,7 +161,7 @@ var findLocation = function(reqBody, params, user, res){
 
 var findCompany = function(reqBody, loc, user){
 	new Company({company_name: reqBody.company.name}).fetch().then(function(company){
-		if (company){
+		if (company !== null){
 			loc.set('company_id') = company.get('company_id');
 			loc.save();
 		} else {
@@ -177,7 +177,7 @@ var findCompany = function(reqBody, loc, user){
 
 var findIndustry = function(reqBody, company, user){
 	new Industry({industry: reqBody.company.industry}).fetch().then(function(industry){
-		if (industry){
+		if (industry !== null){
 			company.set('industry_id') = industry.get('industry_id');
 			company.save();
 		} else {
@@ -192,7 +192,7 @@ var findIndustry = function(reqBody, company, user){
 var findSource = function(reqBody, params, user, res){
 	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
 		console.log(source);
-		if (source){
+		if (source !== null){
 			params.source_id = source.get('source_id');
 			console.log('test', params);
 			newListing(reqBody, params, user, res);
