@@ -125,6 +125,12 @@ body {
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
+.page-title{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 36px;
+}
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {

@@ -10,7 +10,7 @@ var server = require('gulp-server-livereload');
 var less = require('gulp-less');
 
 var path = {
-  HTML: './client/src/*.html',
+  HTML: './client/src/*',
   CSS: './client/src/css/*.css',
   MINIFIED_OUT: 'bundle.min.js',
   OUT: 'bundle.js',
