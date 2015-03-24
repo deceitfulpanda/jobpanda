@@ -16,7 +16,7 @@ var db = Bookshelf.initialize({
 	connection: {
 		host: process.env.CLEARDB_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
 		user: process.env.CLEARDB_USER || 'root',
-		password: process.env.CLEARDB_PW || 'hello',
+		password: process.env.CLEARDB_PW || '',
 		database: process.env.CLEARDB_DB || 'jobpanda',
 		charset: 'utf8'
 	}
