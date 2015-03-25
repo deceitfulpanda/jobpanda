@@ -44,6 +44,7 @@
     "material-design-icons": "^1.0.1",
     "material-ui": "^0.7.1",
     "mysql": "^2.5.5",
+    "node": "0.0.0",
     "node-mysql": "^0.4.2",
     "passport": "^0.2.1",
     "passport-linkedin": "^0.1.3",
