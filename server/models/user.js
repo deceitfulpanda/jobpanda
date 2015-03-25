@@ -1,9 +1,9 @@
 /*================ REQUIRE DEPENDENCIES ================*/
-var db 				= require('../config/config'),
-    JobUser   = require('./job_user'),
-    bcrypt    = require('bcrypt'),
-    Promise   = require('bluebird'),
-    Listing 	= require('./listing');
+var db 				  = require('../config/config'),
+    ListingUser = require('./job_user'),
+    bcrypt      = require('bcrypt'),
+    Promise     = require('bluebird'),
+    Listings 	  = require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var User = db.Model.extend({
@@ -28,7 +28,7 @@ var User = db.Model.extend({
       });
   },
 	listings: function(){
-		return this.belongsToMany(Listing).through(JobUser);
+		return this.belongsToMany(Listings).through(ListingUser);
 	}
 });
 

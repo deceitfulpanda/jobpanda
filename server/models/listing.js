@@ -12,24 +12,18 @@ var db 				= require('../config/config'),
 //Set Table Relationships
 var Listing = db.Model.extend({
 	tableName: 'listings',
-	// users: function(){
-	// 	return this.belongsToMany(User).through(JobUser);
-	// },
 	fields: function(){
-		return this.belongsTo(Field, 'field_id');
+		return this.belongsTo(Field, 'id');
 	},
 	positions: function(){	
-		return this.belongsTo(Position, 'position_id');
+		return this.belongsTo(Position, 'id');
 	},
 	locations: function(){
-		return this.belongsTo(Locations, 'location_id');
+		return this.belongsTo(Locations, 'id');
 	},
 	sources: function(){
-		return this.belongsTo(Source, 'source_id');
-	}//, 
-	// skills: function(){
-	// 	return this.belongsToMany(Skill).through(JobSkill);
-	// }
+		return this.belongsTo(Source, 'id');
+	}
 });
 
 /*=================== EXPORT MODULE ===================*/

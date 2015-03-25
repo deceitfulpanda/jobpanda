@@ -10,7 +10,7 @@ var Company = db.Model.extend({
 		return this.hasMany(Locations);
 	},
 	industries: function(){
-		return this.belongsTo(Industry, 'industry_id');
+		return this.belongsTo(Industry, 'id');
 	}
 });
 

@@ -1,16 +1,16 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-    Listing 	= require('./listing'),
+    Listings 	= require('./listing'),
     Company 	= require('./company');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Locations = db.Model.extend({
 	tableName: 'locations',
 	listings: function(){
-		return this.hasMany(Listing)
+		return this.hasMany(Listings);
 	},
 	companies: function(){
-		return this.belongsTo(Company, 'company_id');
+		return this.belongsTo(Company, 'id');
 	}
 });
 

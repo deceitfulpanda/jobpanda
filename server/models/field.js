@@ -1,12 +1,12 @@
 /*================ REQUIRE DEPENDENCIES ================*/
 var db 				= require('../config/config'),
-    Listing 	= require('./listing');
+    Listings 	= require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Field = db.Model.extend({
 	tableName: 'fields',
 	listings: function(){
-		return this.hasMany(Listing, 'field_id');
+		return this.hasMany(Listings, 'id');
 	}
 });
 

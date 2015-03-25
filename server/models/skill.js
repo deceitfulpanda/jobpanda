@@ -1,13 +1,13 @@
 /*================ REQUIRE DEPENDENCIES ================*/
-var db 				= require('../config/config'),
-    JobSkill   = require('./job_skill'),
-    Listing 	= require('./listing');
+var db 				    = require('../config/config'),
+    ListingSkill  = require('./job_skill'),
+    Listing 	    = require('./listing');
 
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var Skill = db.Model.extend({
-	tableName: 'users',
+	tableName: 'skills',
 	listings: function(){
-		return this.belongsToMany(Listing).through(JobSkill);
+		return this.belongsToMany(Listing).through(ListingSkill);
 	}
 });
 
