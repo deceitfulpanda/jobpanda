@@ -15,6 +15,7 @@ var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
 		host: process.env.JAWSDB_URL || 'localhost'/*Local Host for testing, ENV host for deployment*/,
+    port: process.env.JAWSDB_PORT || 1337,
 		user: process.env.JAWSDB_USER || 'root',
 		password: process.env.JAWSDB_PW || '',
 		database: process.env.JAWSDB_DB || 'jobpanda',
