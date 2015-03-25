@@ -34,7 +34,7 @@ module.exports = {
 		//find user entry in database
 		newUser.fetch().then(function(user){
 			if (user){
-				var id = user.get('user_id');
+				var id = user.get('id');
 				//if the user entry exists, grab user id, and run a query in user/listing joins table
 				new JobUser({user_id: id}).fetchAll().then(function(listings){
 					//for each listing found, create an object to add to response array
@@ -42,20 +42,20 @@ module.exports = {
 						var entry = {};
 						var temp = i;
 						//grab listing data based on listing_id
-						new Listing({listing_id: listings.models[i].get('listing_id')}).fetch().then(function(listing){
+						new Listing({id: listings.models[i].get('id')}).fetch().then(function(listing){
 							entry.url = listing.get('url');
 							entry.employment_type = listing.get('employment_type');
 							entry.experience = listing.get('experience');
 							entry.salary = listing.get('salary');
 							entry.response_type = listing.get('response_type');
 							//grab data from related tables based on foreign keys in listing model
-							new Field({field_id: listing.get('field_id')}).fetch().then(function(field){
+							new Field({id: listing.get('id')}).fetch().then(function(field){
 								entry.field = field.get('field_name');
-								new Position({position_id: listing.get('position_id')}).fetch().then(function(field){
+								new Position({id: listing.get('id')}).fetch().then(function(field){
 									entry.position = field.get('position_name');
-									new Locations({location_id: listing.get('location_id')}).fetch().then(function(locations){
+									new Locations({id: listing.get('id')}).fetch().then(function(locations){
 										entry.location = locations.get('city');
-										new Source({source_id: listing.get('source_id')}).fetch().then(function(source){
+										new Source({id: listing.get('id')}).fetch().then(function(source){
 											entry.source = source.get('source_name');
 											//once all fields in entry object are added, push object to results array
 											results.push(entry);
@@ -82,15 +82,15 @@ module.exports = {
 		//set object for adding params to bookshelf model
 		var params = {};
 		//find user db entry (mock user data)
-		// var username = "tester";
+		var username = "tester";
 		var newUser = new User({user_name: username});
 		newUser.fetch().then(function(user){
 			if (user){
 				//if user entry exists, look for listing entry
 				new Listing({url: req.body.url}).fetch().then(function(foundListing){
 					if (foundListing){
-						var userId = user.get('user_id');
-						var listingId = foundListing.get('listing_id');
+						var userId = user.get('id');
+						var listingId = foundListing.get('id');
 						//if listing entry exists, check joins table to see if user already has listing
 						new JobUser({user_id: userId, listing_id: listingId}).fetch().then(function(found){
 							if (found){
@@ -99,7 +99,7 @@ module.exports = {
 							} else {
 								//if relationship doesn't exist in joins table, add relationship to joins
 								foundListing.save().then(function(newListing){
-									var jobUser = new JobUser({listing_id: listing.get('listing_id'), user_id: user.get('user_id')}).save();
+									var jobUser = new JobUser({listing_id: listing.get('id'), user_id: user.get('id')}).save();
 									res.send(200);
 								});
 							}
@@ -138,13 +138,13 @@ var findField = function(reqBody, params, user, res){
 	new Field({field_name: reqBody.field}).fetch().then(function(field){
 		//if field exists, add id to params object
 		if (field !== null){
-			params.field_id = field.get('field_id');
+			params.field_id = field.get('id');
 			//pass params to next related table
 			findPosition(reqBody, params, user, res);
 		} else {
 			//if field doesn't exist, create it and add id to params object
 			new Field({field_name: reqBody.field}).save().then(function(newField){
-				params.field_id = newField.get('field_id');
+				params.field_id = newField.get('id');
 				//pass params to next related table
 				findPosition(reqBody, params, user, res);
 			});
@@ -157,13 +157,13 @@ var findPosition = function(reqBody, params, user, res){
 	new Position({position_name: reqBody.jobTitle}).fetch().then(function(position){
 		//if position exists, add id to params object
 		if (position !== null){
-			params.position_id = position.get('position_id');
+			params.position_id = position.get('id');
 			//pass params to next related table
 			findLocation(reqBody, params, user, res);
 		} else {
 			//if position doesn't exist, create it and add id to params object
 			new Position({position_name: reqBody.jobTitle}).save().then(function(newPosition){
-				params.position_id = newPosition.get('position_id');
+				params.position_id = newPosition.get('id');
 				//pass params to next related table
 				findLocation(reqBody, params, user, res);
 			});
@@ -176,13 +176,13 @@ var findLocation = function(reqBody, params, user, res){
 	new Locations({city: reqBody.location}).fetch().then(function(location){
 		//if location exists, add id to params object
 		if (location !== null){
-			params.location_id = location.get('location_id');
+			params.location_id = location.get('id');
 			//pass params to next related table
 			findSource(reqBody, params, user, res);
 		} else {
 			//if location doesn't exist, create it and add id to params object
 			new Locations({city: reqBody.location}).save().then(function(newLocation){
-				params.location_id = newLocation.get('location_id');
+				params.location_id = newLocation.get('id');
 				//set location-company relationship
 				findCompany(reqBody, newLocation);
 				//pass params to next related table
@@ -197,12 +197,12 @@ var findCompany = function(reqBody, loc, user){
 	new Company({company_name: reqBody.company.name}).fetch().then(function(company){
 		//if company exists, add id to location model and save
 		if (company !== null){
-			loc.set('company_id') = company.get('company_id');
+			loc.set('company_id') = company.get('id');
 			loc.save();
 		} else {
 			//if company doesn't exist, create it and add id to location model and save
 			new Company({company_name: reqBody.company.name}).save().then(function(newCompany){
-				loc.set('company_id') = newCompany.get('company_id');
+				loc.set('company_id') = newCompany.get('id');
 				loc.save().then(function(){
 					//set company-industry relationship
 					findIndustry(reqBody, company);				
@@ -217,12 +217,12 @@ var findIndustry = function(reqBody, company, user){
 	new Industry({industry: reqBody.company.industry}).fetch().then(function(industry){
 		//if industry exists, add id to company model and save
 		if (industry !== null){
-			company.set('industry_id') = industry.get('industry_id');
+			company.set('industry_id') = industry.get('id');
 			company.save();
 		} else {
 			//if industry doesn't exist, create it and add id company model and save
 			new Industry({industry: reqBody.company.industry}).save().then(function(newIndustry){
-				company.set('industry_id') = newIndustry.get('industry_id');
+				company.set('industry_id') = newIndustry.get('id');
 				company.save();
 			});
 		}
@@ -234,13 +234,13 @@ var findSource = function(reqBody, params, user, res){
 	new Source({source_name: reqBody.sourceNetwork}).fetch().then(function(source){
 		//if source exists, add id to params object
 		if (source !== null){
-			params.source_id = source.get('source_id');
+			params.source_id = source.get('id');
 			//pass params to next related table
 			newListing(reqBody, params, user, res);
 		} else {
 			//if source doesn't exist, create it and add id to params object
 			new Source({source_name: reqBody.sourceNetwork}).save().then(function(newSource){
-				params.source_id = newSource.get('source_id');
+				params.source_id = newSource.get('id');
 				//pass params to next related table
 				newListing(reqBody, params, user, res);
 			});
@@ -260,7 +260,7 @@ var newListing = function(reqBody, params, user, res){
 	var listing = new Listing(params);
 	//Set listing relationship to user then save to DB
 	listing.save().then(function(newListing) {
-		var jobUser = new JobUser({listing_id: listing.get('listing_id'), user_id: user.get('user_id')}).save();
+		var jobUser = new JobUser({listing_id: listing.get('id'), user_id: user.get('id')}).save();
 	  res.send(200);
 	});
 };

@@ -4,7 +4,7 @@
   "description": "job application management app",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "postinstall": "gulp production"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-html-replace": "^1.4.4",
+    "gulp-jest": "^0.4.0",
     "gulp-less": "^3.0.1",
     "gulp-react": "^3.0.0",
     "gulp-server-livereload": "^1.2.1",
@@ -55,5 +56,8 @@
     "reflux": "^0.2.6",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.4.0"
   }
 }

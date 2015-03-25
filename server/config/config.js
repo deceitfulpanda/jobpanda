@@ -8,14 +8,13 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
-// var mysql = require('mysql');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
 		host: process.env.JAWSDB_URL || 'localhost'/*Local Host for testing, ENV host for deployment*/,
-    port: process.env.JAWSDB_PORT || 1337,
+    port: process.env.JAWSDB_PORT || 8000,
 		user: process.env.JAWSDB_USER || 'root',
 		password: process.env.JAWSDB_PW || '',
 		database: process.env.JAWSDB_DB || 'jobpanda',
@@ -135,6 +134,10 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.increments('id').primary();
       user.string('user_name', 255);
       user.string('password', 255);
+      user.string('email', 255);
+      user.string('first_name', 255);
+      user.string('last_name', 255);
+      user.string('token', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
