@@ -14,10 +14,10 @@ var path = require('path');
 var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
-		host: process.env.CLEARDB_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
-		user: process.env.CLEARDB_USER || 'root',
-		password: process.env.CLEARDB_PW || '',
-		database: process.env.CLEARDB_DB || 'jobpanda',
+		host: process.env.JAWSDB_URL || 'localhost'/*Local Host for testing, ENV host for deployment*/,
+		user: process.env.JAWSDB_USER || 'root',
+		password: process.env.JAWSDB_PW || '',
+		database: process.env.JAWSDB_DB || 'jobpanda',
 		charset: 'utf8'
 	}
 });
