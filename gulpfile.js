@@ -10,7 +10,7 @@ var server = require('gulp-server-livereload');
 var less = require('gulp-less');
 var jest = require('gulp-jest');
 
-require('harmonize');
+require('harmonize')();
 
 var path = {
   HTML: './client/src/*',
