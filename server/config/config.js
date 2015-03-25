@@ -8,14 +8,13 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
-// var mysql = require('mysql');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
 		host: process.env.JAWSDB_URL || 'localhost'/*Local Host for testing, ENV host for deployment*/,
-    port: process.env.JAWSDB_PORT || 1337,
+    port: process.env.JAWSDB_PORT || 8000,
 		user: process.env.JAWSDB_USER || 'root',
 		password: process.env.JAWSDB_PW || '',
 		database: process.env.JAWSDB_DB || 'jobpanda',
