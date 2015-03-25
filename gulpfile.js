@@ -10,6 +10,8 @@ var server = require('gulp-server-livereload');
 var less = require('gulp-less');
 var jest = require('gulp-jest');
 
+require('harmonize');
+
 var path = {
   HTML: './client/src/*',
   CSS: './client/src/css/*.css',
@@ -90,6 +92,7 @@ gulp.task('watchProd', function(){
 
 gulp.task('jest', function () {
     return gulp.src('__tests__').pipe(jest({
+        scriptPreprocessor: "./spec/support/preprocessor.js",
         unmockedModulePathPatterns: [
             "node_modules/react"
         ],
