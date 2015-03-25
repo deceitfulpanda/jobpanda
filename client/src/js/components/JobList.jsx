@@ -8,6 +8,9 @@ var unsafe = Reactable.unsafe;
 
 var menuItems = {};
 var JobList = React.createClass({
+  handleClick: function() {
+    alert("clicked!")
+  },
   render: function(){
     return (
         <Table 
@@ -26,9 +29,9 @@ var JobList = React.createClass({
           {key: 'status', label: 'Status'},
           {key: 'favorite', label: 'Favorite'},
           {key: 'edit', label: 'Edit / Details'}
-          ]}
+        ]}
         />
-      );
+    );
   }
 });
 

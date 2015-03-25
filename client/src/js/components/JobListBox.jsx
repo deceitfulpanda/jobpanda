@@ -23,7 +23,7 @@ Modal.injectCSS();
 var JobListBox = React.createClass({
 
   getInitialState: function() {
-    return { jobs: JobStore.getJobs(), modalIsOpen: true};
+    return { jobs: JobStore.getJobs(), modalIsOpen: false};
   },
   openModal: function(){
     console.log('lol');
