@@ -34,7 +34,7 @@ module.exports = {
 		//find user entry in database
 		newUser.fetch().then(function(user){
 			if (user){
-				var id = user.get('user_id');
+				var id = user.get('id');
 				//if the user entry exists, grab user id, and run a query in user/listing joins table
 				new JobUser({user_id: id}).fetchAll().then(function(listings){
 					//for each listing found, create an object to add to response array
@@ -42,20 +42,20 @@ module.exports = {
 						var entry = {};
 						var temp = i;
 						//grab listing data based on listing_id
-						new Listing({listing_id: listings.models[i].get('listing_id')}).fetch().then(function(listing){
+						new Listing({id: listings.models[i].get('id')}).fetch().then(function(listing){
 							entry.url = listing.get('url');
 							entry.employment_type = listing.get('employment_type');
 							entry.experience = listing.get('experience');
 							entry.salary = listing.get('salary');
 							entry.response_type = listing.get('response_type');
 							//grab data from related tables based on foreign keys in listing model
-							new Field({field_id: listing.get('field_id')}).fetch().then(function(field){
+							new Field({id: listing.get('id')}).fetch().then(function(field){
 								entry.field = field.get('field_name');
-								new Position({position_id: listing.get('position_id')}).fetch().then(function(field){
+								new Position({id: listing.get('id')}).fetch().then(function(field){
 									entry.position = field.get('position_name');
-									new Locations({location_id: listing.get('location_id')}).fetch().then(function(locations){
+									new Locations({id: listing.get('id')}).fetch().then(function(locations){
 										entry.location = locations.get('city');
-										new Source({source_id: listing.get('source_id')}).fetch().then(function(source){
+										new Source({id: listing.get('id')}).fetch().then(function(source){
 											entry.source = source.get('source_name');
 											//once all fields in entry object are added, push object to results array
 											results.push(entry);
