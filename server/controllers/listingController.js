@@ -82,15 +82,15 @@ module.exports = {
 		//set object for adding params to bookshelf model
 		var params = {};
 		//find user db entry (mock user data)
-		// var username = "tester";
+		var username = "tester";
 		var newUser = new User({user_name: username});
 		newUser.fetch().then(function(user){
 			if (user){
 				//if user entry exists, look for listing entry
 				new Listing({url: req.body.url}).fetch().then(function(foundListing){
 					if (foundListing){
-						var userId = user.get('user_id');
-						var listingId = foundListing.get('listing_id');
+						var userId = user.get('id');
+						var listingId = foundListing.get('id');
 						//if listing entry exists, check joins table to see if user already has listing
 						new JobUser({user_id: userId, listing_id: listingId}).fetch().then(function(found){
 							if (found){
@@ -99,7 +99,7 @@ module.exports = {
 							} else {
 								//if relationship doesn't exist in joins table, add relationship to joins
 								foundListing.save().then(function(newListing){
-									var jobUser = new JobUser({listing_id: listing.get('listing_id'), user_id: user.get('user_id')}).save();
+									var jobUser = new JobUser({listing_id: listing.get('id'), user_id: user.get('id')}).save();
 									res.send(200);
 								});
 							}
