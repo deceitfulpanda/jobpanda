@@ -1,7 +1,12 @@
-var React = require('React');
+var React = require('react');
 var EditModal = require('./EditModal.jsx');
 
 var EditButton = React.createClass({
+	getInitialState: function() {
+		return {
+			this.props.editData
+		};
+	},
 	openSesame: function() {
 		console.log("props:", this.props.editData);
 		this.refs.modal.openModal();
