@@ -4,7 +4,7 @@
   "description": "job application management app",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "postinstall": "gulp production"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-html-replace": "^1.4.4",
+    "gulp-jest": "^0.4.0",
     "gulp-less": "^3.0.1",
     "gulp-react": "^3.0.0",
     "gulp-server-livereload": "^1.2.1",
@@ -49,11 +50,17 @@
     "react": "^0.12.2",
     "react-chartjs": "^0.5.0",
     "react-modal": "^0.1.0",
+    "react-onclickoutside": "^0.2.3",
     "react-tap-event-plugin": "^0.1.4",
     "reactable": "^0.10.1",
     "reactify": "^1.1.0",
     "reflux": "^0.2.6",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
+  },
+  "devDependencies": {
+    "harmonize": "^1.4.1",
+    "jest-cli": "^0.4.0",
+    "react-tools": "^0.13.1"
   }
 }

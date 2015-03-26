@@ -6,12 +6,11 @@ var db 				= require('../config/config'),
 /*============== SET SCHEMA RELATIONSHIPS ==============*/
 var JobUser = db.Model.extend({
 	tableName: 'listings_users',
-	hasTimestamps: true,
 	listings: function(){
-		return this.belongsTo(Listing, 'listing_id');
+		return this.belongsTo(Listing, 'id');
 	},
 	users: function(){
-		return this.belongsTo(User, 'user_id');
+		return this.belongsTo(User, 'id');
 	}
 });
 

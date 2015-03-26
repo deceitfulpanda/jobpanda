@@ -8,16 +8,16 @@
 /*==================== REQUIRE DEPENDENCIES ====================*/
 var Bookshelf = require('bookshelf');
 var path = require('path');
-// var mysql = require('mysql');
 
 /*====== INITIALIZE BOOKSHELF CONNECTION TO POSTGRESS DB ======*/
 var db = Bookshelf.initialize({
 	client: 'mysql',
 	connection: {
-		host: process.env.CLEARDB_HOST || 'localhost'/*Local Host for testing, ENV host for deployment*/,
-		user: process.env.CLEARDB_USER || 'root',
-		password: process.env.CLEARDB_PW || 'hello',
-		database: process.env.CLEARDB_DB || 'jobpanda',
+		host: process.env.JAWSDB_URL || 'localhost'/*Local Host for testing, ENV host for deployment*/,
+    port: process.env.JAWSDB_PORT || 8000,
+		user: process.env.JAWSDB_USER || 'root',
+		password: process.env.JAWSDB_PW || '',
+		database: process.env.JAWSDB_DB || 'jobpanda',
 		charset: 'utf8'
 	}
 });
@@ -32,7 +32,7 @@ db.plugin('registry');
 db.knex.schema.hasTable('listings').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('listings', function (listing) {
-      listing.increments('listing_id').primary();
+      listing.increments('id').primary();
       listing.integer('location_id');
       listing.integer('position_id');
       listing.integer('source_id');
@@ -54,7 +54,7 @@ db.knex.schema.hasTable('listings').then(function(exists) {
 db.knex.schema.hasTable('locations').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('locations', function (location) {
-      location.increments('location_id').primary();
+      location.increments('id').primary();
       location.integer('company_id');
       location.string('url', 255);
       location.string('address', 255);
@@ -69,7 +69,7 @@ db.knex.schema.hasTable('locations').then(function(exists) {
 db.knex.schema.hasTable('companies').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('companies', function (company) {
-      company.increments('company_id').primary();
+      company.increments('id').primary();
       company.integer('industry_id');
       company.string('url', 255);
       company.string('company_name', 255);
@@ -83,7 +83,7 @@ db.knex.schema.hasTable('companies').then(function(exists) {
 db.knex.schema.hasTable('industries').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('industries', function (industry) {
-      industry.increments('industry_id').primary();
+      industry.increments('id').primary();
       industry.string('industry', 255);
     }).then(function (table) {
       console.log('Created Table', table);
@@ -95,7 +95,7 @@ db.knex.schema.hasTable('industries').then(function(exists) {
 db.knex.schema.hasTable('positions').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('positions', function (position) {
-      position.increments('position_id').primary();
+      position.increments('id').primary();
       position.string('position_name', 255);
     }).then(function (table) {
       console.log('Created Table', table);
@@ -107,7 +107,7 @@ db.knex.schema.hasTable('positions').then(function(exists) {
 db.knex.schema.hasTable('fields').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('fields', function (field) {
-      field.increments('field_id').primary();
+      field.increments('id').primary();
       field.string('field_name', 255);
     }).then(function (table) {
       console.log('Created Table', table);
@@ -119,7 +119,7 @@ db.knex.schema.hasTable('fields').then(function(exists) {
 db.knex.schema.hasTable('sources').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('sources', function (source) {
-      source.increments('source_id').primary();
+      source.increments('id').primary();
       source.string('source_name', 255);
     }).then(function (table) {
       console.log('Created Table', table);
@@ -131,9 +131,13 @@ db.knex.schema.hasTable('sources').then(function(exists) {
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
-      user.increments('user_id').primary();
+      user.increments('id').primary();
       user.string('user_name', 255);
       user.string('password', 255);
+      user.string('email', 255);
+      user.string('first_name', 255);
+      user.string('last_name', 255);
+      user.string('token', 255);
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -172,7 +176,7 @@ db.knex.schema.hasTable('listings_skills').then(function(exists) {
 db.knex.schema.hasTable('skills').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('skills', function (skill) {
-      skill.increments('skill_id').primary();
+      skill.increments('id').primary();
       skill.string('skill', 255);
     }).then(function (table) {
       console.log('Created Table', table);

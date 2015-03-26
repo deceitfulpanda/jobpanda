@@ -8,6 +8,9 @@ var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 var server = require('gulp-server-livereload');
 var less = require('gulp-less');
+var jest = require('gulp-jest');
+
+require('harmonize')();
 
 var path = {
   HTML: './client/src/*',
@@ -87,6 +90,25 @@ gulp.task('watchProd', function(){
   gulp.watch(['client/src/index.html', 'client/src/styles.css', 'client/src/js/*.jsx', 'client/src/js/components/*.jsx'], ['production'])
 });
 
+gulp.task('jest', function () {
+    return gulp.src('__tests__').pipe(jest({
+        scriptPreprocessor: "./spec/support/preprocessor.js",
+        unmockedModulePathPatterns: [
+            "node_modules/react"
+        ],
+        testDirectoryName: "spec",
+        testPathIgnorePatterns: [
+            "node_modules",
+            "spec/support"
+        ],
+        moduleFileExtensions: [
+            "js",
+            "json",
+            "react"
+        ]
+    }));
+});
+
 //replace references to scripts in index.html
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
@@ -97,6 +119,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['less', 'copyCSS', 'replaceHTML', 'build']);
+gulp.task('production', ['less', 'copyCSS', 'replaceHTML', 'build', 'jest']);
 gulp.task('localtest', ['production', 'webserver', 'watchProd']);
 gulp.task('default', ['watch']);

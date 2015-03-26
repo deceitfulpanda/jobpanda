@@ -8,9 +8,9 @@ var Toggle = mui.Toggle;
 var Reactable = require('reactable');
 var unsafe = Reactable.unsafe;
 var FloatingActionButton = mui.FloatingActionButton;
+var EditButton = require('../components/EditButton.jsx');
 
-
-var _jobs = [
+var _jobData = [
   {
    "id" : 012345,  
    "title":"Class Lead",
@@ -20,9 +20,7 @@ var _jobs = [
    "apply_link":<a className="btn-flat disabled">Applied</a>,
    "favorite": '',
    "status":  <a className="btn-flat disabled">Interview</a>,
-   "date_added": "3/15/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/15/15"
 },
   {
    "id" : 012346,  
@@ -33,9 +31,7 @@ var _jobs = [
    "apply_link":<a className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/18/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/18/15"
 },
   {
    "id" : 012346,  
@@ -47,8 +43,6 @@ var _jobs = [
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
    "date_added": "3/18/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
 },
 
   {
@@ -60,9 +54,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -74,9 +66,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -88,9 +78,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -102,9 +90,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -116,9 +102,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -130,9 +114,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -144,9 +126,7 @@ var _jobs = [
    "apply_link":<a className="btn-flat disabled">Applied</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -158,9 +138,7 @@ var _jobs = [
    "apply_link":<a href="http://google.com" className="waves-effect waves-light btn pink">Apply</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -172,9 +150,7 @@ var _jobs = [
    "apply_link":<a className="btn-flat disabled">Applied</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">No Response</a>,
-   "date_added": "3/19/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/19/15"
 },
 
   {
@@ -186,9 +162,7 @@ var _jobs = [
    "apply_link":<a className="btn-flat disabled">Applied</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">Rejected</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 },
 
   {
@@ -200,13 +174,16 @@ var _jobs = [
    "apply_link":<a className="btn-flat disabled">Applied</a>,
    "favorite": <i className="mdi-action-grade icon-medium" />,
    "status":  <a className="btn-flat disabled">Offer</a>,
-   "date_added": "3/21/15",
-   "edit" : <a onClick={this.openModal} className="btn-floating btn-small waves-effect waves-light orange"><i className="mdi-editor-mode-edit"></i></a>
-
+   "date_added": "3/21/15"
 }
-
-
 ];
+
+var _jobs = _jobData.map(function(jobDatum) {
+  jobDatum.edit = <EditButton editData= {jobDatum}/>
+  return jobDatum;
+})
+
+console.log(_jobs)
 
 // <select className="browser-default"> <option value="" disabled selected>Choose your option</option><option value="No Response">No Response</option> <option value="Interview">Interview</option> <option value="Rejected">Rejected</option> <option value="Offer">Offer</option> <option value="Pending">Pending</option> </select>
 
@@ -264,7 +241,7 @@ var JobStore = Reflux.createStore({
     for (var i = 0; i < _jobs.length; i++) {
       if(_jobs._id === id) {
         return jobs[i];
-      }
+      } 
     }
   }
 });
