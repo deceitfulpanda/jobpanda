@@ -1,8 +1,8 @@
 //var Router = require('react-router');
 var React = require('react');
-window.React = React;
 var injectTapEventPlugin = require("react-tap-event-plugin");
 var mui = require('material-ui');
+window.React = React;
 
 //Components
 var NavBar = require('./components/NavBar.jsx');

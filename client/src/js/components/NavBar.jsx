@@ -21,15 +21,9 @@ var NavBar = React.createClass({
     return (
         <Toolbar>
           <ToolbarGroup key={0} float="left">
-             <a className="hidden-link" href="/"><h2 className="mui-app-bar-title">JobPanda</h2></a>
+             <a className="hidden-link" href="/"><h2 className="mui-app-bar-title">P</h2></a>
           </ToolbarGroup>
-          <ToolbarGroup key={1} float="left">
-             <DropDownMenu menuItems={filterOptions} />
-          </ToolbarGroup>
-          <ToolbarGroup className="login" key={2} float="right">
-             <RaisedButton label="Log out" linkButton={true} primary={true} href="/login" />
-          </ToolbarGroup>
-        </Toolbar>
+          </Toolbar>
       );
   }
 });

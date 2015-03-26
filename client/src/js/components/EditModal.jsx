@@ -5,7 +5,7 @@ var JobStore = require('../stores/JobStore.jsx');
 
 var EditModal = React.createClass({
 	getInitialState: function() {
-	  return {modalIsOpen: true};
+	  return {modalIsOpen: false};
 	},
 	openModal: function(){
 	  console.log('lol');
