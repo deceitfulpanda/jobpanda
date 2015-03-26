@@ -77,7 +77,12 @@ html, body {
 
 .reactable-header-sort-asc{
   opacity: 1;
-  text-decoration: overline;
+  font-weight: bold;
+}
+
+a.reactable-page-button {
+  margin: 0 15px;
+  color: #000;
 }
 
 
@@ -88,9 +93,9 @@ html, body {
 .reactable-filterer::before{
   display: block;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 40px;
   font-size: 16px;
-  content: "Search Your Jobs: ";
+  content: "Search Jobs";
 }
 
 .reactable-filter-input {

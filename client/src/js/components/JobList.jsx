@@ -9,7 +9,7 @@ var unsafe = Reactable.unsafe;
 var menuItems = {};
 var JobList = React.createClass({
   handleClick: function() {
-    alert("clicked!")
+    console.log("eggtarts");
   },
   render: function(){
     return (
@@ -25,7 +25,7 @@ var JobList = React.createClass({
           {key: 'location', label: 'Location'},
           {key: 'date_added', label: 'Date Added'},
           {key: 'source_network', label: 'Source Network'},
-          {key: 'apply_link', label: 'Apply Link'},
+          {key: 'apply_link onClick={this.handleClick}', label: 'Apply Link'},
           {key: 'status', label: 'Status'},
           {key: 'favorite', label: 'Favorite'},
           {key: 'edit', label: 'Edit / Details'}

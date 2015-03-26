@@ -7,10 +7,13 @@ var LineChart = require('react-chartjs').Line;
 var InsightStore = require('../stores/InsightStore.jsx');
 
 var Insight = React.createClass({
+	handleClick: function() {
+		alert("billy");
+	},
 	render: function() {
 		return (
 			<div className="tab-template-container"> 
-			  <h2 className="mui-font-style-headline">Jobs Insights</h2> 
+			  <h2 className="mui-font-style-headline" onClick={this.handleClick}>Jobs Insights</h2> 
 			  <div>
 			  <div className="half">
 			    <div>
