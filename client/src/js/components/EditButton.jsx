@@ -3,6 +3,7 @@ var EditModal = require('./EditModal.jsx');
 
 var EditButton = React.createClass({
 	openSesame: function() {
+		console.log("props:", this.props.editData);
 		this.refs.modal.openModal();
 	},
 	render: function() {
